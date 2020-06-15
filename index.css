@@ -1,0 +1,128 @@
+﻿body {
+    /* Login */
+    position: fixed;
+    width: 100vh;
+    height: 100vh;
+    font-family: Lato;
+    font-style: normal;
+    background-image: url(images/schoolgrounds.jpg);
+    z-index: -1;
+}
+
+.header {
+    /* Header */
+    position: fixed;
+    width: 100%;
+    height: 17.5%;
+    top: 0;
+    background: #FFD614;
+    z-index: -1;
+}
+
+.separator {
+    position: fixed;
+    width: 100%;
+    height: 1.5%;
+    top: 16%;
+    background: #FFFFFF;
+    z-index: -1;
+}
+
+#colorOverlay {
+    position: absolute;
+    background-color: rgba(9,85,64,.75);
+    width: 100vw;
+    height: 33%;
+    top: 17.5%;
+    z-index: -1;
+}
+
+#logo {
+    position: fixed;
+    width: 15%;
+    height: 15%;
+    top: 4%;
+    left: 2.5%;
+    z-index: -1;
+}
+
+.menu {
+    /* Menu background */
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 50vh;
+    background: #00583D;
+    z-index: -1;
+}
+
+.morning-tea-button {
+    position: relative;
+    width: 365px;
+    height: 109px;
+    left: 10%;
+    top: 75px;
+    background-color: #FFD614;
+    border: none;
+    color: #00583D;
+    text-align: center;
+    font-size: 36px;
+    font-weight: 800;
+}
+
+a {
+    color: #FFFFFF;
+}
+
+.lunch-button {
+    position: relative;
+    width: 138px;
+    height: 68px;
+    left: 13%;
+    top: 75px;
+    background-color: transparent;
+    color: #FFFFFF;
+    border: none;
+    text-align: center;
+    font-size: 36px;
+    font-weight: 800;
+    text-decoration: underline;
+}
+
+
+.order-text {
+    /* ORDER ONLINE */
+    position: absolute;
+    width: max-content;
+    height: 115px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 96px;
+    line-height: 115px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+
+.box {
+    /* Login Box */ 
+    position: absolute;
+    width: 463px;
+    height: 477px;
+    left: 488px;
+    top: 273px;
+    background: #FFFFFF;
+}
+
+/* Login Button */
+
+.button {
+    position: absolute;
+    width: 226px;
+    height: 66px;
+    left: 607px;
+    top: 581px;
+}
