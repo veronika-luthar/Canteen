@@ -22,6 +22,9 @@ allItems[5] = new menuItems("Cheese Pulls", 3, "Morning Tea");
 allItems[6] = new menuItems("Sandwiches", 4, "Morning Tea");
 allItems[7] = new menuItems("Bagels", 4, "Morning Tea");
 
+//allItems.push(new menuItems("name", 4, "Morning Tea"));
+
+
 let weekOne = [];
 
 weekOne[0] = new menuItems("Chicken nuggets with baked chips", 5, "Lunch");
