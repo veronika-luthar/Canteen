@@ -9,8 +9,9 @@ function menuItems(name, price, type) {
     this.type = type;
 }
 
-
-
+// for loop for menu item things (make a div) document.createElement("div") array[array.length  -1]; document.getElementsByClassName("Container").appendChild(array[array.length - 1])
+//array of menu items, with html elements
+//make a menu file 
 let allItems = [];
 
 allItems[0] = new menuItems("Cheese Roll", 4, "Morning Tea");
