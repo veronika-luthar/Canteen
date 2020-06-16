@@ -1,7 +1,4 @@
 // JavaScript source code
-//function onClickTest() {
-  //  document.getElementById("demo").innerHTML = 5 + 6;
-//}
 
 function menuItems(name, price, type) {
     this.name = name;
@@ -9,21 +6,8 @@ function menuItems(name, price, type) {
     this.type = type;
 }
 
+let newDiv = [];
 
-
-function addElement() {
-    let newDiv = document.createElement("div");
-    let newContent = document.createTextNode("hi there");
-    newDiv.appendChild(newContent);
-    document.body.insertBefore(newDiv);
-}
-
-//document.createElement("div");
-//document.getElementsByClassName("Container").appendChild(allItems[allItems.length-1])
-
-// for loop for menu item things (make a div) document.createElement("div") array[array.length  -1]; document.getElementsByClassName("Container").appendChild(array[array.length - 1])
-//array of menu items, with html elements
-//make a menu file 
 let allItems = [];
 
 allItems[0] = new menuItems("Cheese Roll", 4, "Morning Tea");
@@ -37,6 +21,13 @@ allItems[7] = new menuItems("Bagels", 4, "Morning Tea");
 
 //allItems.push(new menuItems("name", 4, "Morning Tea"));
 
+
+for (let i = 0; i < allItems.length; i++) {
+    newDiv[i] = document.createElement("div");
+    document.getElementById("container").appendChild(newDiv[i]);
+    newDiv[i].innerHTML = allItems[i].name;
+    newDiv[i].classList = "item";
+}
 
 let weekOne = [];
 
@@ -56,13 +47,4 @@ weekTwo[4] = new menuItems("Chicken or beef burgers with tomato relish and chees
 
 for (let i = 0; i < weekOne.length; i++) {
     console.log(weekOne[i].name)
-}
-
-//creates a div not text output you dumbo 
-
-for (let i = 0; i < allItems.length; i++) {
-    let newDiv = document.createElement("div");
-    newDiv.appendChild(allItems[allItems.length - 1]);
-    console.log(newDiv);
-
 }
