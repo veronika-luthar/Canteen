@@ -9,6 +9,18 @@ function menuItems(name, price, type) {
     this.type = type;
 }
 
+
+
+function addElement() {
+    let newDiv = document.createElement("div");
+    let newContent = document.createTextNode("hi there");
+    newDiv.appendChild(newContent);
+    document.body.insertBefore(newDiv);
+}
+
+//document.createElement("div");
+//document.getElementsByClassName("Container").appendChild(allItems[allItems.length-1])
+
 // for loop for menu item things (make a div) document.createElement("div") array[array.length  -1]; document.getElementsByClassName("Container").appendChild(array[array.length - 1])
 //array of menu items, with html elements
 //make a menu file 
@@ -44,4 +56,13 @@ weekTwo[4] = new menuItems("Chicken or beef burgers with tomato relish and chees
 
 for (let i = 0; i < weekOne.length; i++) {
     console.log(weekOne[i].name)
+}
+
+//creates a div not text output you dumbo 
+
+for (let i = 0; i < allItems.length; i++) {
+    let newDiv = document.createElement("div");
+    newDiv.appendChild(allItems[allItems.length - 1]);
+    console.log(newDiv);
+
 }
