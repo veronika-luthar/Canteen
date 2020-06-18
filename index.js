@@ -10,14 +10,14 @@ let newDiv = [];
 
 let morningTea = [];
 
-allItems[0] = new menuItems("Cheese Roll", 4, "Morning Tea");
-allItems[1] = new menuItems("Savoury Pinwheel", 3, "Morning Tea");
-allItems[2] = new menuItems("Muffins", 3, "Morning Tea");
-allItems[3] = new menuItems("Cinnamon Swirl", 3, "Morning Tea");
-allItems[4] = new menuItems("Brownie", 3, "Morning Tea");
-allItems[5] = new menuItems("Cheese Pulls", 3, "Morning Tea");
-allItems[6] = new menuItems("Sandwiches", 4, "Morning Tea");
-allItems[7] = new menuItems("Bagels", 4, "Morning Tea");
+morningTea[0] = new menuItems("Cheese Roll", 4, "Morning Tea");
+morningTea[1] = new menuItems("Savoury Pinwheel", 3, "Morning Tea");
+morningTea[2] = new menuItems("Muffins", 3, "Morning Tea");
+morningTea[3] = new menuItems("Cinnamon Swirl", 3, "Morning Tea");
+morningTea[4] = new menuItems("Brownie", 3, "Morning Tea");
+morningTea[5] = new menuItems("Cheese Pulls", 3, "Morning Tea");
+morningTea[6] = new menuItems("Sandwiches", 4, "Morning Tea");
+morningTea[7] = new menuItems("Bagels", 4, "Morning Tea");
 
 //allItems.push(new menuItems("name", 4, "Morning Tea"));
 
@@ -25,7 +25,7 @@ allItems[7] = new menuItems("Bagels", 4, "Morning Tea");
 for (let i = 0; i < morningTea.length; i++) {
     newDiv[i] = document.createElement("div");
     document.getElementById("container").appendChild(newDiv[i]);
-    newDiv[i].innerHTML = morningTea0[i].name;
+    newDiv[i].innerHTML = morningTea[i].name;
     newDiv[i].classList = "item";
 }
 
