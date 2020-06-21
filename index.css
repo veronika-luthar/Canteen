@@ -18,19 +18,39 @@
     width: 100%;
 }
 
-.morning-tea-button {
-    position: relative;
-    width: 365px;
-    height: 109px;
-    left: 10%;
+.button-default {
+    background-color: transparent;
+    color: #FFFFFF;
+    border: none;
+    text-align: center;
+    font-size: 36px;
+    font-weight: 800;
+    text-decoration: underline;
     top: 75px;
+}
+
+.button-current {
     background-color: #FFD614;
     border: none;
     color: #00583D;
     text-align: center;
     font-size: 36px;
     font-weight: 800;
+    width: 365px;
+    height: 109px;
+    top: 75px;
 }
+
+#lunch {
+    left: 13%;
+    position: relative;
+}
+
+#morning-tea {
+    left: 10%;
+    position: relative;
+}
+
 
 .container {
     display: flex;
@@ -76,10 +96,20 @@
     transform: translateY(650%) translateX(35%);
 }
 
+.item-number {
+    background: #E4E4E4;
+    width: 125px;
+    height: 50px;
+    transform: translateY(550%) translateX(25%);
+}
+
 .info {
     text-transform: uppercase;
 
 }
+
+
+
 .header {
 
     position: absolute;
@@ -129,21 +159,6 @@
 
 a {
     color: #FFFFFF;
-}
-
-.lunch-button {
-    position: relative;
-    width: 138px;
-    height: 68px;
-    left: 13%;
-    top: 75px;
-    background-color: transparent;
-    color: #FFFFFF;
-    border: none;
-    text-align: center;
-    font-size: 36px;
-    font-weight: 800;
-    text-decoration: underline;
 }
 
 
