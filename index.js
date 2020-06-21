@@ -7,26 +7,31 @@ function menuItems(name, price, type) {
 }
 
 let newDiv = [];
+let newButton = [];
+let info = [];
 
 let morningTea = [];
 
-morningTea[0] = new menuItems("Cheese Roll", 4, "Morning Tea");
-morningTea[1] = new menuItems("Savoury Pinwheel", 3, "Morning Tea");
-morningTea[2] = new menuItems("Muffins", 3, "Morning Tea");
-morningTea[3] = new menuItems("Cinnamon Swirl", 3, "Morning Tea");
-morningTea[4] = new menuItems("Brownie", 3, "Morning Tea");
-morningTea[5] = new menuItems("Cheese Pulls", 3, "Morning Tea");
-morningTea[6] = new menuItems("Sandwiches", 4, "Morning Tea");
-morningTea[7] = new menuItems("Bagels", 4, "Morning Tea");
+morningTea.push(new menuItems("Cheese Roll", 4, "Morning Tea"));
+morningTea.push(new menuItems("Savoury Pinwheel", 3, "Morning Tea"));
+morningTea.push(new menuItems("Muffins", 3, "Morning Tea"));
+morningTea.push(new menuItems("Cinnamon Swirl", 3, "Morning Tea"));
+morningTea.push(new menuItems("Brownie", 3, "Morning Tea"));
+morningTea.push(new menuItems("Cheese Pulls", 3, "Morning Tea"));
+morningTea.push(new menuItems("Sandwiches", 4, "Morning Tea"));
+morningTea.push(new menuItems("Bagels", 4, "Morning Tea"));
 
-//allItems.push(new menuItems("name", 4, "Morning Tea"));
-
+function createElement(type, obj, name, text) {
+    array = document.createElement(type);
+    array.classList = name;
+    array.innerHTML = text;
+    return obj.appendChild(array);
+}
 
 for (let i = 0; i < morningTea.length; i++) {
-    newDiv[i] = document.createElement("div");
-    document.getElementById("container").appendChild(newDiv[i]);
-    newDiv[i].innerHTML = morningTea[i].name;
-    newDiv[i].classList = "item";
+    newDiv[i] = new createElement("div", document.getElementById("container"), "item", "");
+    newButton[i] = new createElement("button", newDiv[i], "buttons", "ADD");
+    info[i] = new createElement("blockquote", newDiv[i], "info", morningTea[i].name);
 }
 
 let weekOne = [];
