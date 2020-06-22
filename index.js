@@ -37,6 +37,8 @@ weekTwo.push(new menuItems("Lasagne", 5, "Lunch"));
 weekTwo.push(new menuItems("Meatballs on tomato sauce with rice", 5, "Lunch"));
 weekTwo.push(new menuItems("Chicken or beef burgers with tomato relish and cheese", 5, "Lunch"));
 
+let cart = [];
+
 // displays the morning tea menu as default
 displayMenu("morning tea");
 
