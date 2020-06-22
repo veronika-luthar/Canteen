@@ -10,6 +10,22 @@
     overflow-x:hidden;
 }
 
+.dropdown-content {
+    position: absolute;
+    background-color: #fff;
+    display: none;
+    left: 13%
+}
+
+.dropdown-content a {
+    color: black;
+    display: block;
+}
+
+.show {
+    display: block;
+}
+
 .button-block {
     top: 50vh;
     background: #00583D;
@@ -51,6 +67,17 @@
     position: relative;
 }
 
+.week {
+    background-color: white;
+    border: none;
+    color: #00583D;
+    text-align: center;
+    font-size: 36px;
+    font-weight: 800;
+    width: 365px;
+    height: 109px;
+    top: 75px;
+}
 
 .container {
     display: flex;
@@ -107,8 +134,6 @@
     text-transform: uppercase;
 
 }
-
-
 
 .header {
 

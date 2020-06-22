@@ -37,6 +37,7 @@ weekTwo.push(new menuItems("Lasagne", 5, "Lunch"));
 weekTwo.push(new menuItems("Meatballs on tomato sauce with rice", 5, "Lunch"));
 weekTwo.push(new menuItems("Chicken or beef burgers with tomato relish and cheese", 5, "Lunch"));
 
+// cart array
 let cart = [];
 
 // displays the morning tea menu as default
@@ -55,6 +56,7 @@ function menuButtonClick(dir) {
         document.getElementById("lunch").classList = "button-current";
         document.getElementById("morning-tea").classList = "button-default";
         displayMenu("lunch");
+        document.getElementById("dropdown").classList.toggle("show");
     }
     else {
         document.getElementById("morning-tea").classList = "button-current";
@@ -62,6 +64,7 @@ function menuButtonClick(dir) {
         displayMenu("morning tea");
     }
 }
+
 // creating an element for the menu display
 function createElement(type, obj, name, text) {
     array = document.createElement(type);
@@ -95,3 +98,12 @@ function displayMenu(menu) {
         }
     }
 }
+
+
+//document.createElement("div")
+
+//document.getElementById("buttons").onclick = addClick();
+
+//function addClick() {
+  //  document.getElementById("buttons").classList = "button-current";
+//}
