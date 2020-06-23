@@ -85,6 +85,11 @@ function displayMenu(menu) {
             newButton[i] = new createElement("button", newDiv[i], "buttons", "ADD");
             itemNumber[i] = new createElement("div", newDiv[i], "item-number", "1");
             info[i] = new createElement("blockquote", newDiv[i], "info", morningTea[i].name + "\r\n$" + morningTea[i].price);
+
+            newButton[i].onclick = function () {
+                cart.push(morningTea[i]);
+                
+            };
         }
     }
 
@@ -95,15 +100,26 @@ function displayMenu(menu) {
             newButton[i] = new createElement("button", newDiv[i], "buttons", "ADD");
             itemNumber[i] = new createElement("div", newDiv[i], "item-number", "1");
             info[i] = new createElement("blockquote", newDiv[i], "info", weekOne[i].name + "\r\n$" + weekOne[i].price);
+
+            newButton[i].onclick = function () {
+                cart.push(weekOne[i]);
+
+            };
+
         }
     }
 }
 
+console.log(cart);
 
 //document.createElement("div")
 
 //document.getElementById("buttons").onclick = addClick();
 
+
+
 //function addClick() {
-  //  document.getElementById("buttons").classList = "button-current";
+  //  console.log("yes");
+    //document.getElementsByClassName("buttons").classList = "button-current";
+   // document.getElementsByClassName("buttons").classList = "button-current";
 //}
