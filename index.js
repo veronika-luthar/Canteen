@@ -51,11 +51,11 @@ function menuItems(name, price, type) {
 }
 
 // on button click changes the buttons' styling and menu
-function menuButtonClick(dir) {
+function menuButtonClick(dir, week) {
     if (dir === 1) {
         document.getElementById("lunch").classList = "button-current";
         document.getElementById("morning-tea").classList = "button-default";
-        displayMenu("lunch");
+        displayMenu("lunch", week);
         document.getElementById("dropdown").classList.toggle("show");
     }
     else {
@@ -74,7 +74,7 @@ function createElement(type, obj, name, text) {
 }
 
 // function to display the menu depending on button click
-function displayMenu(menu) {
+function displayMenu(menu, week) {
 
     // clears "container" contents
     document.getElementById("container").innerHTML = "";
@@ -95,31 +95,35 @@ function displayMenu(menu) {
 
     else { 
 
-        for (let i = 0; i < weekOne.length; i++) {
-            newDiv[i] = new createElement("div", document.getElementById("container"), "item", "");
-            newButton[i] = new createElement("button", newDiv[i], "buttons", "ADD");
-            itemNumber[i] = new createElement("div", newDiv[i], "item-number", "1");
-            info[i] = new createElement("blockquote", newDiv[i], "info", weekOne[i].name + "\r\n$" + weekOne[i].price);
+        if (week === 1) {
 
-            newButton[i].onclick = function () {
-                cart.push(weekOne[i]);
+            for (let i = 0; i < weekOne.length; i++) {
+                newDiv[i] = new createElement("div", document.getElementById("container"), "item", "");
+                newButton[i] = new createElement("button", newDiv[i], "buttons", "ADD");
+                itemNumber[i] = new createElement("div", newDiv[i], "item-number", "1");
+                info[i] = new createElement("blockquote", newDiv[i], "info", weekOne[i].name + "\r\n$" + weekOne[i].price);
 
-            };
+                newButton[i].onclick = function () {
+                    cart.push(weekOne[i]);
+                };
+            }
+        }
 
+        else {
+
+            for (let i = 0; i < weekTwo.length; i++) {
+                console.log(2);
+                newDiv[i] = new createElement("div", document.getElementById("container"), "item", "");
+                newButton[i] = new createElement("button", newDiv[i], "buttons", "ADD");
+                itemNumber[i] = new createElement("div", newDiv[i], "item-number", "1");
+                info[i] = new createElement("blockquote", newDiv[i], "info", weekTwo[i].name + "\r\n$" + weekTwo[i].price);
+
+                newButton[i].onclick = function () {
+                    cart.push(weekTwo[i]);
+                };
+            }
         }
     }
 }
 
 console.log(cart);
-
-//document.createElement("div")
-
-//document.getElementById("buttons").onclick = addClick();
-
-
-
-//function addClick() {
-  //  console.log("yes");
-    //document.getElementsByClassName("buttons").classList = "button-current";
-   // document.getElementsByClassName("buttons").classList = "button-current";
-//}

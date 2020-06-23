@@ -25,17 +25,14 @@
 
 
 .dropdown-content {
-    position: absolute;
+    position: relative;
     background-color: #fff;
     display: none;
-    left: 30.95%;
-    top: 184px;
+    left: 32%;
+    top: 75px;
+    width: 365px;
 }
 
-.dropdown-content a {
-    color: black;
-    display: block;
-}
 
 .show {
     display: block;
