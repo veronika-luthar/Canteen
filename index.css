@@ -10,11 +10,26 @@
     overflow-x:hidden;
 }
 
+.week {
+    background-color: white;
+    border: none;
+    color: #00583D;
+    text-align: center;
+    font-size: 36px;
+    font-weight: 800;
+    width: 365px;
+    height: 109px;
+    display: block;
+    left: 23%;
+}
+
+
 .dropdown-content {
     position: absolute;
     background-color: #fff;
     display: none;
-    left: 13%
+    left: 30.95%;
+    top: 184px;
 }
 
 .dropdown-content a {
@@ -67,17 +82,6 @@
     position: relative;
 }
 
-.week {
-    background-color: white;
-    border: none;
-    color: #00583D;
-    text-align: center;
-    font-size: 36px;
-    font-weight: 800;
-    width: 365px;
-    height: 109px;
-    top: 75px;
-}
 
 .container {
     display: flex;
