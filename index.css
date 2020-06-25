@@ -1,5 +1,4 @@
 ﻿body {
-
     position: absolute;
     width: 100%;
     height: 100vh;
@@ -7,7 +6,7 @@
     font-style: normal;
     background-image: url(images/schoolgrounds.jpg);
     z-index: -1;
-    overflow-x:hidden;
+    overflow-x: hidden;
 }
 
 .week {
@@ -95,10 +94,10 @@
     padding-right: 10%;
 }
 
-.container::after {
-    content: "";
-    width: 400px;
-}
+    .container::after {
+        content: "";
+        width: 400px;
+    }
 
 .item {
     background-color: #fff;
@@ -133,11 +132,9 @@
 
 .info {
     text-transform: uppercase;
-
 }
 
 .header {
-
     position: absolute;
     width: 100%;
     height: 17.5%;
@@ -160,7 +157,7 @@
     position: absolute;
     background-color: rgba(9,85,64,.75);
     width: 100vw;
-    height: 33%;
+    height: 100%;
     top: 17.5%;
     z-index: -1;
 }
@@ -183,17 +180,12 @@
     z-index: -1;
 }
 
-a {
-    color: #FFFFFF;
-}
-
-
 .order-text {
     position: absolute;
     width: max-content;
     height: 115px;
     left: 50%;
-    top: 50%;
+    top: 17.5%;
     transform: translate(-50%, -50%);
     font-family: inherit;
     font-weight: bold;
@@ -209,4 +201,26 @@ a {
     height: 66px;
     left: 607px;
     top: 581px;
+}
+
+.cart {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    left: 80%;
+    top: 5%;
+    color: black;
+}
+
+/* cart page */
+
+.cart-container {
+    background-color: white;
+    top: 50%;
+    left: 12.5%;
+    height: 67.5%;
+    display: block;
+    width: 75%;
+    position: absolute;
+
 }

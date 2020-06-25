@@ -42,6 +42,7 @@ let cart = [];
 
 // displays the morning tea menu as default
 displayMenu("morning tea");
+document.getElementById("cart-container").style.display = "none";
 
 // function to create menu items and put them in an array
 function menuItems(name, price, type) {
@@ -124,6 +125,17 @@ function displayMenu(menu, week) {
             }
         }
     }
+}
+
+// display cart & hide menu
+function hideMenu() {
+    document.getElementById("container").style.display = "none";
+    document.getElementById("button-block").style.display = "none";
+    document.getElementById("lunch").style.display = "none";
+    document.getElementById("morning-tea").style.display = "none";
+
+    document.getElementById("order-online").innerHTML = "CART";
+    document.getElementById("cart-container").style.display = "block";
 }
 
 console.log(cart);

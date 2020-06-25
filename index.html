@@ -15,11 +15,12 @@
         <div id="logo">
             <img src="images/bayfield-text-logo.svg" alt="Bayfield Highschool Logo">
         </div>
+        <button class="cart" onclick="hideMenu()">Cart</button>
     </div>
     <div class="separator"></div>
-    <div id="colorOverlay"> <div class="order-text">ORDER ONLINE</div></div>
+    <div id="colorOverlay"> <div class="order-text" id="order-online">ORDER ONLINE</div></div>
 
-    <div class="button-block">
+    <div class="button-block" id="button-block">
 
         <button class="button-current" style="border-color: none;" id="morning-tea" onclick="menuButtonClick(0)">MORNING TEA </button>
         
@@ -32,8 +33,9 @@
         </div>
     </div>
 
-    <div id="container" class="container">
-        
-    </div>
+    <div class="cart-container" id="cart-container"></div>
+
+    <div id="container" class="container"></div>
+
 </body>
 </html>
