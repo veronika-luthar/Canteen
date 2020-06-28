@@ -127,6 +127,8 @@ function displayMenu(menu, week) {
     }
 }
 
+
+
 // display cart & hide menu
 function hideMenu() {
     document.getElementById("container").style.display = "none";
@@ -136,6 +138,43 @@ function hideMenu() {
 
     document.getElementById("order-online").innerHTML = "CART";
     document.getElementById("cart-container").style.display = "block";
+
+    // display cart items
+    for (let i = 0; i < cart.length; i++) {
+
+
+        cart[i] = new createElement("p", document.getElementById("cart-container"), "cart-item", cart[i].name);
+      //  cart[i] = new createElement("p", document.getElementById("cart-container"), "quantity", 1);
+
+    //    duplicateElements(cart);
+        
+
+       // console.log(cart, i)
+ //       if (cart[i] === cart[i]) {
+   //         document.getElementsByClassName("quantity")[i] = parselnt(createElement.text + 1);
+            
+     //   }
+    }
+
 }
 
-console.log(cart);
+function itemQuantity(array) {
+    let display = [], quantity = [], prev;
+}
+
+//function duplicateElements(array) {
+  //  let sortedArray = array.slice().sort();
+ //   let test = [];
+
+ //   for (let i = 0; i < sortedArray.length - 1; i++) {
+  //      if (sortedArray[i + 1] === sortedArray[i]) {
+  //          test.push(sortedArray[i])
+  //          console.log(test);
+  //      }
+  //  }
+//}
+
+//function getOccurence(array, value) {
+ //   return array.filter((v) => (v === value)).length;
+//};
+
