@@ -147,7 +147,7 @@ function hideMenu() {
       //  cart[i] = new createElement("p", document.getElementById("cart-container"), "quantity", 1);
 
     //    duplicateElements(cart);
-        
+        console.log(itemQuantity(cart));
 
        // console.log(cart, i)
  //       if (cart[i] === cart[i]) {
@@ -160,6 +160,19 @@ function hideMenu() {
 
 function itemQuantity(array) {
     let display = [], quantity = [], prev;
+
+    array.sort();
+    for (let i = 0; i < array.lenght; i++) {
+        if (array[i] !== prev) {
+            display.push(array[i]);
+            quantity.push(1);
+        }
+        else {
+            quantity[quantity.length - 1]++;
+        }
+        prev = array[i]
+    }
+    return [display, quantity];
 }
 
 //function duplicateElements(array) {
