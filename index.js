@@ -7,6 +7,18 @@ let info = [];
 let itemNumber = [];
 
 
+// function to create menu items and put them in an array
+function menuItems(name, price, type) {
+    this.name = name;
+    this.price = price;
+    this.type = type;
+}
+
+function findPriceByName(menuArray, name) {
+
+
+    // return menuArray[bla].price;
+}
 // morning tea menu
 let morningTea = [];
 
@@ -44,12 +56,7 @@ let cart = [];
 displayMenu("morning tea");
 document.getElementById("cart-container").style.display = "none";
 
-// function to create menu items and put them in an array
-function menuItems(name, price, type) {
-    this.name = name;
-    this.price = price;
-    this.type = type;
-}
+
 
 // on button click changes the buttons' styling and menu
 function menuButtonClick(dir, week) {
@@ -88,7 +95,12 @@ function displayMenu(menu, week) {
             info[i] = new createElement("blockquote", newDiv[i], "info", morningTea[i].name + "\r\n$" + morningTea[i].price);
 
             newButton[i].onclick = function () {
-                cart.push(morningTea[i]);
+                // cart.push(morningTea[i]);
+                if (cart[morningTea[i].name]) {
+                    cart[morningTea[i].name]++;
+                }
+                else
+                    cart[morningTea[i].name] = 1;
                 
             };
         }
@@ -140,14 +152,25 @@ function hideMenu() {
     document.getElementById("cart-container").style.display = "block";
 
     // display cart items
-    for (let i = 0; i < cart.length; i++) {
+    //for (let i = 0; i < cart.length; i++) {
+    displaycart = new Array();
+    Object.keys(cart).forEach(function (key, index) {
+        console.log(key + " = " + this[key]);
+        displaycart[key] = new createElement("p", document.getElementById("cart-container"), "cart-item", key + " " + this[key]);
+    }, cart);
+/*    for (var i in cart) {
 
 
-        cart[i] = new createElement("p", document.getElementById("cart-container"), "cart-item", cart[i].name);
+         cart[i] = new createElement("p", document.getElementById("cart-container"), "cart-item", i.name);
+        
       //  cart[i] = new createElement("p", document.getElementById("cart-container"), "quantity", 1);
 
     //    duplicateElements(cart);
-        console.log(itemQuantity(cart));
+   //     console.log(itemQuantity(cart));
+    //    for (var key in cart) {
+      //      if (cart.hasOwnProperty(key))
+        //        console.log(key + " = " + cart[key]);
+        //}
 
        // console.log(cart, i)
  //       if (cart[i] === cart[i]) {
@@ -155,10 +178,14 @@ function hideMenu() {
             
      //   }
     }
-
+    */
 }
 
 function itemQuantity(array) {
+
+
+
+   
     let display = [], quantity = [], prev;
 
     array.sort();
