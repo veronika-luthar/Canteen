@@ -48,10 +48,14 @@
 .button-default {
     background-color: transparent;
     color: #FFFFFF;
-    border: none;
+    border-left: solid 45px transparent;
+    border-right: solid 45px transparent;
+    border-top: none;
+    border-bottom: none;
     text-align: center;
     font-size: 36px;
     font-weight: 800;
+    height: 109px;
     text-decoration: underline;
     top: 75px;
 }
@@ -63,13 +67,14 @@
     text-align: center;
     font-size: 36px;
     font-weight: 800;
-    width: 365px;
+    border-left: solid 45px #FFD614;
+    border-right: solid 45px #FFD614;
     height: 109px;
     top: 75px;
 }
 
 #lunch {
-    left: 13%;
+    left: 10%;
     position: relative;
 }
 
@@ -127,12 +132,13 @@
     background: #E4E4E4;
     width: 125px;
     height: 50px;
-    transform: translateY(632%) translateX(-170%);
+    transform: translateY(667%) translateX(-166%);
     border: none;
     font-size: 36px;
     font-family: inherit;
     color: #00583D;
     text-align: center;
+    resize: none;
 
 }
 
@@ -236,4 +242,23 @@
     width: 75%;
     position: absolute;
 
+}
+
+.cart-item {
+    font-size: 36px;
+    transform: translateY(5%) translateX(5%);
+
+}
+
+.back-button {
+    top: 75vh;
+    background-color: #00583D;
+    color: #fff;
+    width: 200px;
+    height: 50px;
+    border: none;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 800;
+    transform: translateY(35%) translateX(15%);
 }

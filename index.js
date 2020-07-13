@@ -70,6 +70,7 @@ function menuButtonClick(dir, week) {
         document.getElementById("morning-tea").classList = "button-current";
         document.getElementById("lunch").classList = "button-default";
         displayMenu("morning tea");
+        document.getElementById("dropdown").classList.toggle("hide");
     }
 }
 
@@ -91,7 +92,7 @@ function displayMenu(menu, week) {
         for (let i = 0; i < morningTea.length; i++) {
             newDiv[i] = new createElement("div", document.getElementById("container"), "item", "");
             newButton[i] = new createElement("button", newDiv[i], "buttons", "ADD");
-            itemNumber[i] = new createElement("input", newDiv[i], "input", "1");
+            itemNumber[i] = new createElement("textarea", newDiv[i], "input", "1");
             info[i] = new createElement("blockquote", newDiv[i], "info", morningTea[i].name + "\r\n$" + morningTea[i].price);
 
             newButton[i].onclick = function () {
@@ -101,7 +102,7 @@ function displayMenu(menu, week) {
                 }
                 else
                     cart[morningTea[i].name] = 1;
-                
+
             };
         }
     }
@@ -113,7 +114,7 @@ function displayMenu(menu, week) {
             for (let i = 0; i < weekOne.length; i++) {
                 newDiv[i] = new createElement("div", document.getElementById("container"), "item", "");
                 newButton[i] = new createElement("button", newDiv[i], "buttons", "ADD");
-                itemNumber[i] = new createElement("div", newDiv[i], "item-number", "1");
+                itemNumber[i] = new createElement("textarea", newDiv[i], "input", "1");
                 info[i] = new createElement("blockquote", newDiv[i], "info", weekOne[i].name + "\r\n$" + weekOne[i].price);
 
                 newButton[i].onclick = function () {
@@ -128,7 +129,7 @@ function displayMenu(menu, week) {
                 console.log(2);
                 newDiv[i] = new createElement("div", document.getElementById("container"), "item", "");
                 newButton[i] = new createElement("button", newDiv[i], "buttons", "ADD");
-                itemNumber[i] = new createElement("div", newDiv[i], "item-number", "1");
+                itemNumber[i] = new createElement("textarea", newDiv[i], "input", "1");
                 info[i] = new createElement("blockquote", newDiv[i], "info", weekTwo[i].name + "\r\n$" + weekTwo[i].price);
 
                 newButton[i].onclick = function () {
@@ -151,11 +152,11 @@ function hideMenu() {
     document.getElementById("order-online").innerHTML = "CART";
     document.getElementById("cart-container").style.display = "block";
 
-    let backButton = new createElement("button", document.getElementById("cart-container"), "buttons", "BACK");
+    let backButton = new createElement("button", document.getElementById("cart-container"), "back-button", "BACK");
 
     backButton.onclick = function () {
         document.getElementById("container").style.display = "flex";
-        document.getElementById("button-block").style.display = "flex";
+        document.getElementById("button-block").style.display = "block";
         document.getElementById("lunch").style.display = "";
         document.getElementById("morning-tea").style.display = "";
 
