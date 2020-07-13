@@ -91,7 +91,7 @@ function displayMenu(menu, week) {
         for (let i = 0; i < morningTea.length; i++) {
             newDiv[i] = new createElement("div", document.getElementById("container"), "item", "");
             newButton[i] = new createElement("button", newDiv[i], "buttons", "ADD");
-            itemNumber[i] = new createElement("div", newDiv[i], "item-number", "1");
+            itemNumber[i] = new createElement("input", newDiv[i], "input", "1");
             info[i] = new createElement("blockquote", newDiv[i], "info", morningTea[i].name + "\r\n$" + morningTea[i].price);
 
             newButton[i].onclick = function () {
@@ -145,6 +145,8 @@ function hideMenu() {
     document.getElementById("button-block").style.display = "none";
     document.getElementById("lunch").style.display = "none";
     document.getElementById("morning-tea").style.display = "none";
+
+    document.getElementById("cart-container").innerHTML = "";
 
     document.getElementById("order-online").innerHTML = "CART";
     document.getElementById("cart-container").style.display = "block";
