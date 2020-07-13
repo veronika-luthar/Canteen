@@ -139,8 +139,6 @@ function displayMenu(menu, week) {
     }
 }
 
-
-
 // display cart & hide menu
 function hideMenu() {
     document.getElementById("container").style.display = "none";
@@ -151,6 +149,18 @@ function hideMenu() {
     document.getElementById("order-online").innerHTML = "CART";
     document.getElementById("cart-container").style.display = "block";
 
+    let backButton = new createElement("button", document.getElementById("cart-container"), "buttons", "BACK");
+
+    backButton.onclick = function () {
+        document.getElementById("container").style.display = "flex";
+        document.getElementById("button-block").style.display = "flex";
+        document.getElementById("lunch").style.display = "";
+        document.getElementById("morning-tea").style.display = "";
+
+        document.getElementById("order-online").innerHTML = "ORDER ONLINE";
+        document.getElementById("cart-container").style.display = "none";
+    }
+
     // display cart items
     //for (let i = 0; i < cart.length; i++) {
     displaycart = new Array();
@@ -158,63 +168,4 @@ function hideMenu() {
         console.log(key + " = " + this[key]);
         displaycart[key] = new createElement("p", document.getElementById("cart-container"), "cart-item", key + " " + this[key]);
     }, cart);
-/*    for (var i in cart) {
-
-
-         cart[i] = new createElement("p", document.getElementById("cart-container"), "cart-item", i.name);
-        
-      //  cart[i] = new createElement("p", document.getElementById("cart-container"), "quantity", 1);
-
-    //    duplicateElements(cart);
-   //     console.log(itemQuantity(cart));
-    //    for (var key in cart) {
-      //      if (cart.hasOwnProperty(key))
-        //        console.log(key + " = " + cart[key]);
-        //}
-
-       // console.log(cart, i)
- //       if (cart[i] === cart[i]) {
-   //         document.getElementsByClassName("quantity")[i] = parselnt(createElement.text + 1);
-            
-     //   }
-    }
-    */
 }
-
-function itemQuantity(array) {
-
-
-
-   
-    let display = [], quantity = [], prev;
-
-    array.sort();
-    for (let i = 0; i < array.lenght; i++) {
-        if (array[i] !== prev) {
-            display.push(array[i]);
-            quantity.push(1);
-        }
-        else {
-            quantity[quantity.length - 1]++;
-        }
-        prev = array[i]
-    }
-    return [display, quantity];
-}
-
-//function duplicateElements(array) {
-  //  let sortedArray = array.slice().sort();
- //   let test = [];
-
- //   for (let i = 0; i < sortedArray.length - 1; i++) {
-  //      if (sortedArray[i + 1] === sortedArray[i]) {
-  //          test.push(sortedArray[i])
-  //          console.log(test);
-  //      }
-  //  }
-//}
-
-//function getOccurence(array, value) {
- //   return array.filter((v) => (v === value)).length;
-//};
-
