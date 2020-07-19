@@ -59,12 +59,11 @@ document.getElementById("cart-container").style.display = "none";
 
 
 // on button click changes the buttons' styling and menu
-function menuButtonClick(dir, week) {
+function menuButtonClick(dir) {
     if (dir === 1) {
         document.getElementById("lunch").classList = "button-current";
         document.getElementById("morning-tea").classList = "button-default";
-        displayMenu("lunch", week);
-        document.getElementById("dropdown").classList.toggle("show");
+        document.getElementById("dropdown").classList.toggle("show")
     }
     else {
         document.getElementById("morning-tea").classList = "button-current";
@@ -73,6 +72,22 @@ function menuButtonClick(dir, week) {
         document.getElementById("dropdown").classList.toggle("hide");
     }
 }
+
+// on "week" button click displays correct week
+
+function dropdown(week) {
+    if (week === 1) {
+
+        displayMenu("lunch", 1);
+        document.getElementById("dropdown").classList.toggle("hide");
+    }
+
+    else {
+        displayMenu("lunch", 2);
+        document.getElementById("dropdown").classList.toggle("hide");
+    }
+}
+
 
 // creating an element for the menu display
 function createElement(type, obj, name, text) {
@@ -126,7 +141,6 @@ function displayMenu(menu, week) {
         else {
 
             for (let i = 0; i < weekTwo.length; i++) {
-                console.log(2);
                 newDiv[i] = new createElement("div", document.getElementById("container"), "item", "");
                 newButton[i] = new createElement("button", newDiv[i], "buttons", "ADD");
                 itemNumber[i] = new createElement("textarea", newDiv[i], "input", "1");
@@ -172,3 +186,4 @@ function hideMenu() {
         displaycart[key] = new createElement("p", document.getElementById("cart-container"), "cart-item", key + " " + this[key]);
     }, cart);
 }
+

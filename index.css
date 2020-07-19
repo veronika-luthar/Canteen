@@ -37,6 +37,10 @@
     display: block;
 }
 
+.hide {
+    display: none;
+}
+
 .button-block {
     top: 50vh;
     background: #00583D;
@@ -132,7 +136,7 @@
     background: #E4E4E4;
     width: 125px;
     height: 50px;
-    transform: translateY(667%) translateX(-166%);
+    transform: translateY(625%) translateX(-166%);
     border: none;
     font-size: 36px;
     font-family: inherit;
@@ -146,7 +150,7 @@
     background: #E4E4E4;
     width: 125px;
     height: 50px;
-    transform: translateY(550%) translateX(25%);
+    transform: translateY(450%) translateX(25%);
 }
 
 .info {
