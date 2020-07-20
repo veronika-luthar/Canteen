@@ -4,9 +4,18 @@
     height: 100vh;
     font-family: Lato;
     font-style: normal;
-    background-image: url(images/schoolgrounds.jpg);
+    background-color: #00583D;
     z-index: -1;
     overflow-x: hidden;
+}
+
+.background-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+    z-index: -1;
+    position: fixed;
 }
 
 .week {
@@ -89,6 +98,7 @@
 
 
 .container {
+
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -176,9 +186,8 @@
 }
 
 
-#colorOverlay {
+#text-container {
     position: absolute;
-    background-color: rgba(9,85,64,.75);
     width: 100vw;
     height: 100%;
     top: 17.5%;
@@ -241,7 +250,7 @@
     background-color: white;
     top: 50%;
     left: 12.5%;
-    height: 67.5%;
+    height: 100%;
     display: block;
     width: 75%;
     position: absolute;

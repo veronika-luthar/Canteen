@@ -133,7 +133,13 @@ function displayMenu(menu, week) {
                 info[i] = new createElement("blockquote", newDiv[i], "info", weekOne[i].name + "\r\n$" + weekOne[i].price);
 
                 newButton[i].onclick = function () {
-                    cart.push(weekOne[i]);
+                    //   cart.push(weekOne[i]);
+                    if (cart[weekOne[i].name]) {
+                        cart[weekOne[i].name]++;
+                    }
+                    else
+                        cart[weekOne[i].name] = 1;
+
                 };
             }
         }
@@ -147,7 +153,13 @@ function displayMenu(menu, week) {
                 info[i] = new createElement("blockquote", newDiv[i], "info", weekTwo[i].name + "\r\n$" + weekTwo[i].price);
 
                 newButton[i].onclick = function () {
-                    cart.push(weekTwo[i]);
+                    //cart.push(weekTwo[i]);
+                    if (cart[weekTwo[i].name]) {
+                        cart[weekTwo[i].name]++;
+                    }
+                    else
+                        cart[weekTwo[i].name] = 1;
+
                 };
             }
         }
