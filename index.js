@@ -14,11 +14,6 @@ function menuItems(name, price, type) {
     this.type = type;
 }
 
-function findPriceByName(menuArray, name) {
-
-
-    // return menuArray[bla].price;
-}
 // morning tea menu
 let morningTea = [];
 
@@ -190,14 +185,34 @@ function hideMenu() {
         document.getElementById("cart-container").style.display = "none";
     }
 
-    let checkoutButton = new createElement("button", document.getElementById("cart-container"), "checkout-button", "CHECKOUT");
+   // let checkoutButton;
 
+    let num = 0;
     // display cart items
     //for (let i = 0; i < cart.length; i++) {
-    displaycart = new Array();
+    displaycart = [];
     Object.keys(cart).forEach(function (key, index) {
         console.log(key + " = " + this[key]);
-        displaycart[key] = new createElement("p", document.getElementById("cart-container"), "cart-item", key + " " + this[key]);
+        displaycart[key] = new createElement("p", document.getElementById("cart-container"), "cart-item", key + " " + this[key]); 
+        num++;
     }, cart);
+
+    if (num >= 1) {
+        let checkoutButton = new createElement("button", document.getElementById("cart-container"), "checkout-button", "CHECKOUT");
+
+        checkoutButton.onclick = function () {
+            document.getElementById("overlay").classList = "overlay";
+            document.getElementById("body").style = "overflow: hidden";
+        }
+    }
+
+    else {
+        new createElement("p", document.getElementById("cart-container"), "no-items", "NO ITEMS IN CART");
+    }
+
 }
+
+
+
+    
 
