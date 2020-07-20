@@ -190,6 +190,8 @@ function hideMenu() {
         document.getElementById("cart-container").style.display = "none";
     }
 
+    let checkoutButton = new createElement("button", document.getElementById("cart-container"), "checkout-button", "CHECKOUT");
+
     // display cart items
     //for (let i = 0; i < cart.length; i++) {
     displaycart = new Array();
