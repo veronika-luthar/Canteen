@@ -50,6 +50,8 @@ let cart = [];
 // displays the morning tea menu as default
 displayMenu("morning tea");
 document.getElementById("cart-container").style.display = "none";
+document.getElementById("student-form").style.display = "none";
+
 
 
 
@@ -203,6 +205,13 @@ function hideMenu() {
         checkoutButton.onclick = function () {
             document.getElementById("overlay").classList = "overlay";
             document.getElementById("body").style = "overflow: hidden";
+            document.getElementById("student-form").style.display = "block";
+            let studentName = new createElement("textarea", document.getElementById("student-form"), "student-name", "");
+            let tutorClass = new createElement("textarea", document.getElementById("student-form"), "tutor-class", "");
+            let studentNumber = new createElement("textarea", document.getElementById("student-form"), "student-number", "");
+
+            console.log(document.getElementById("student-name").value);
+
         }
     }
 

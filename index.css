@@ -310,3 +310,51 @@
     text-align: center;
     margin: 20px;
 }
+
+/* checkout */
+
+.student-form {
+    background-color: white;
+    top: 25%;
+    left: 25%;
+    height: 50%;
+    display: block;
+    width: 50%;
+    position: absolute;
+    margin-bottom: 50px;
+    display: block;
+    position: fixed;
+}
+
+.student-name {
+    background: #E4E4E4;
+    width: 500px;
+    height: 50px;
+    border: none;
+    font-size: 36px;
+    font-family: inherit;
+    color: #00583D;
+    resize: none;
+}
+
+.tutor-class {
+    background: #E4E4E4;
+    width: 500px;
+    height: 50px;
+    border: none;
+    font-size: 36px;
+    font-family: inherit;
+    color: #00583D;
+    resize: none;
+}
+
+.student-number {
+    background: #E4E4E4;
+    width: 500px;
+    height: 50px;
+    border: none;
+    font-size: 36px;
+    font-family: inherit;
+    color: #00583D;
+    resize: none;
+}
