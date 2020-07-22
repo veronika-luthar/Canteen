@@ -108,13 +108,17 @@ function displayMenu(menu, week) {
             info[i] = new createElement("blockquote", newDiv[i], "info", morningTea[i].name + "\r\n$" + morningTea[i].price);
 
             newButton[i].onclick = function () {
-                // cart.push(morningTea[i]);
+                // pushes the morning tea item's name to the cart array
                 if (cart[morningTea[i].name]) {
                     cart[morningTea[i].name]++;
                 }
                 else
                     cart[morningTea[i].name] = 1;
-
+                 // on add button click it changes colour and then changes back a second later
+                newButton[i].classList = "clicked-buttons";
+                setTimeout(function () {
+                    newButton[i].classList = "buttons";
+                }, 150);
             };
         }
     }
@@ -137,6 +141,10 @@ function displayMenu(menu, week) {
                     else
                         cart[weekOne[i].name] = 1;
 
+                    newButton[i].classList = "clicked-buttons";
+                    setTimeout(function () {
+                        newButton[i].classList = "buttons";
+                    }, 150);
                 };
             }
         }
@@ -157,6 +165,10 @@ function displayMenu(menu, week) {
                     else
                         cart[weekTwo[i].name] = 1;
 
+                    newButton[i].classList = "clicked-buttons";
+                    setTimeout(function () {
+                        newButton[i].classList = "buttons";
+                    }, 150);
                 };
             }
         }
@@ -205,12 +217,26 @@ function hideMenu() {
         checkoutButton.onclick = function () {
             document.getElementById("overlay").classList = "overlay";
             document.getElementById("body").style = "overflow: hidden";
-            document.getElementById("student-form").style.display = "block";
-            let studentName = new createElement("textarea", document.getElementById("student-form"), "student-name", "");
-            let tutorClass = new createElement("textarea", document.getElementById("student-form"), "tutor-class", "");
-            let studentNumber = new createElement("textarea", document.getElementById("student-form"), "student-number", "");
+            document.getElementById("student-form").style.display = "flex";
+            let studentName = new createElement("input", document.getElementById("student-form"), "student-name", "Student Name");
+            studentName.setAttribute("type", "text");
+            studentName.setAttribute("placeholder", "Student Name");
 
-            console.log(document.getElementById("student-name").value);
+            let tutorClass = new createElement("input", document.getElementById("student-form"), "tutor-class", "Tutor Class");
+            tutorClass.setAttribute("type", "text");
+            tutorClass.setAttribute("placeholder", "Tutor Class");
+
+            let studentNumber = new createElement("input", document.getElementById("student-form"), "student-number", "Student Number");
+            studentNumber.setAttribute("type", "text");
+            studentNumber.setAttribute("placeholder", "Student Number");
+
+           //console.log(document.getElementById("student-name").value);
+            let testButton = new createElement("button", document.getElementById("student-form"), "x-button", "X");
+            testButton.onclick = function () {
+                console.log(studentName.value);
+                console.log(tutorClass.value);
+                console.log(studentNumber.value);
+}
 
         }
     }
