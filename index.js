@@ -211,6 +211,7 @@ function hideMenu() {
 
     document.getElementById("order-online").innerHTML = "CART";
     document.getElementById("cart-container").style.display = "block";
+ //   document.getElementById("ul").style.display = "block";
 
     let backButton = new createElement("button", document.getElementById("cart-container"), "back-button", "BACK");
 
@@ -235,14 +236,19 @@ function hideMenu() {
         displaycart[name] = new createElement("p", document.getElementById("cart-container"), "cart-item", name + " " + this[name] + " $" + this[name] * getAllItemPrice(name)); 
         num++;
 
-      //  let sum = 0;
+        let sum = 0;
 
-      //  for (let i = 0; i < displaycart.length; i++) {
-           
-    //    }
+        for (let i = 0; i < getAllItemPrice(name).length; i++) {
+            sum = sum + getAllItemPrice(name)[i];
+            console.log(sum);
+        }
 
-    //    new createElement("p", document.getElementById("cart-container"), "cart-item", "Total Price: " + );
     }, cart);
+
+ 
+
+    
+
 
     if (num >= 1) {
         let checkoutButton = new createElement("button", document.getElementById("cart-container"), "checkout-button", "CHECKOUT");
