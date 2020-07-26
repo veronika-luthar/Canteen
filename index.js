@@ -1,6 +1,6 @@
 // JavaScript source code
 
-// displaying the menu items
+// display menu items (arrays)
 let newDiv = [];
 let newButton = [];
 let info = [];
@@ -14,6 +14,7 @@ function menuItems(name, price, type) {
     this.type = type;
 }
 
+// function to get the price from each array
 function getPrice(array, name) {
     for (let i = 0; i < array.length; i++) {
         if (name = array[i].name) {
@@ -23,6 +24,7 @@ function getPrice(array, name) {
     return -1;
 }
 
+// function to get the price from all arrays
 function getAllItemPrice(name) {
     let p0 = getPrice(morningTea, name);
     let p1 = getPrice(weekOne, name);
@@ -74,11 +76,10 @@ let cart = [];
 
 // displays the morning tea menu as default
 displayMenu("morning tea");
+
+// hides the cart and student form divs
 document.getElementById("cart-container").style.display = "none";
 document.getElementById("student-form").style.display = "none";
-
-
-
 
 // on button click changes the buttons' styling and menu
 function menuButtonClick(dir) {
@@ -96,7 +97,6 @@ function menuButtonClick(dir) {
 }
 
 // on "week" button click displays correct week
-
 function dropdown(week) {
     if (week === 1) {
 
@@ -109,7 +109,6 @@ function dropdown(week) {
         document.getElementById("dropdown").classList.toggle("hide");
     }
 }
-
 
 // creating an element for the menu display
 function createElement(type, obj, name, text) {
