@@ -14,6 +14,31 @@ function menuItems(name, price, type) {
     this.type = type;
 }
 
+function getPrice(array, name) {
+    for (let i = 0; i < array.length; i++) {
+        if (name = array[i].name) {
+            return array[i].price;
+        }
+    }
+    return -1;
+}
+
+function getAllItemPrice(name) {
+    let p0 = getPrice(morningTea, name);
+    let p1 = getPrice(weekOne, name);
+    let p2 = getPrice(weekTwo, name);
+    if (p0 => 0) {
+        return p0;
+    }
+    else if (p1 => 0) {
+        return p1;
+    }
+    else {
+        return p2;
+    }
+
+};
+
 // morning tea menu
 let morningTea = [];
 
@@ -205,10 +230,18 @@ function hideMenu() {
     // display cart items
     //for (let i = 0; i < cart.length; i++) {
     displaycart = [];
-    Object.keys(cart).forEach(function (key, index) {
-        console.log(key + " = " + this[key]);
-        displaycart[key] = new createElement("p", document.getElementById("cart-container"), "cart-item", key + " " + this[key]); 
+    Object.keys(cart).forEach(function (name, index) {
+        console.log(name + " = " + this[name]);
+        displaycart[name] = new createElement("p", document.getElementById("cart-container"), "cart-item", name + " " + this[name] + " $" + this[name] * getAllItemPrice(name)); 
         num++;
+
+      //  let sum = 0;
+
+      //  for (let i = 0; i < displaycart.length; i++) {
+           
+    //    }
+
+    //    new createElement("p", document.getElementById("cart-container"), "cart-item", "Total Price: " + );
     }, cart);
 
     if (num >= 1) {
@@ -246,8 +279,3 @@ function hideMenu() {
     }
 
 }
-
-
-
-    
-
