@@ -133,7 +133,7 @@ function displayMenu(menu, week) {
             newDiv[i] = new createElement("div", document.getElementById("container"), "item", "");
             newButton[i] = new createElement("button", newDiv[i], "buttons", "ADD");
             itemNumber[i] = new createElement("textarea", newDiv[i], "input", "1");
-            info[i] = new createElement("blockquote", newDiv[i], "info", morningTea[i].name + "\r\n$" + morningTea[i].price);
+            info[i] = new createElement("blockquote", newDiv[i], "info", morningTea[i].name + "<br>$" + morningTea[i].price);
 
             newButton[i].onclick = function () {
                 // pushes the morning tea item's name to the cart array
@@ -185,7 +185,7 @@ function displayMenu(menu, week) {
             newDiv[day] = new createElement("div", document.getElementById("container"), "item", "");
             newButton[day] = new createElement("button", newDiv[day], "buttons", "ADD");
             itemNumber[day] = new createElement("textarea", newDiv[day], "input", "1");
-            info[day] = new createElement("blockquote", newDiv[day], "info", weekOne[day].name + "\r\n$" + weekOne[day].price);
+            info[day] = new createElement("blockquote", newDiv[day], "info", weekOne[day].name + "<br>$" + weekOne[day].price);
 
             newButton[day].onclick = function () {
                 //   cart.push(weekOne[i]);
@@ -207,7 +207,7 @@ function displayMenu(menu, week) {
             newDiv[day] = new createElement("div", document.getElementById("container"), "item", "");
             newButton[day] = new createElement("button", newDiv[day], "buttons", "ADD");
             itemNumber[day] = new createElement("textarea", newDiv[day], "input", "1");
-            info[day] = new createElement("blockquote", newDiv[day], "info", weekTwo[day].name + "\r\n$" + weekTwo[day].price);
+            info[day] = new createElement("blockquote", newDiv[day], "info", weekTwo[day].name + "<br>$" + weekTwo[day].price);
 
             newButton[day].onclick = function () {
                 //cart.push(weekTwo[i]);
@@ -311,3 +311,4 @@ function hideMenu() {
         new createElement("p", document.getElementById("cart-container"), "no-items", "NO ITEMS IN CART");
     }
 }
+
