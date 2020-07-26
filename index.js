@@ -122,6 +122,9 @@ function createElement(type, obj, name, text) {
 // function to display the menu depending on button click
 function displayMenu(menu, week) {
 
+
+
+
     // clears "container" contents
     document.getElementById("container").innerHTML = "";
 
@@ -139,63 +142,87 @@ function displayMenu(menu, week) {
                 }
                 else
                     cart[morningTea[i].name] = 1;
-                 // on add button click it changes colour and then changes back a second later
+                 // on "add" button click it changes colour and then changes back a second later
                 newButton[i].classList = "clicked-buttons";
                 setTimeout(function () {
                     newButton[i].classList = "buttons";
-                }, 150);
+                }, 100);
             };
         }
     }
 
+
+
+
     else { 
+
+        // gets current day
+        switch (new Date().getDay()) {
+            // Monday
+            case 1:
+                day = 0
+                break;
+            // Tuesday
+            case 2:
+                day = 1
+                break;
+            // Wednesday
+            case 3:
+                day = 2
+                break;
+            // Thursday
+            case 4:
+                day = 3
+                break;
+            // Friday
+            case 5:
+                day = 4
+                break;
+        }
 
         if (week === 1) {
 
-            for (let i = 0; i < weekOne.length; i++) {
-                newDiv[i] = new createElement("div", document.getElementById("container"), "item", "");
-                newButton[i] = new createElement("button", newDiv[i], "buttons", "ADD");
-                itemNumber[i] = new createElement("textarea", newDiv[i], "input", "1");
-                info[i] = new createElement("blockquote", newDiv[i], "info", weekOne[i].name + "\r\n$" + weekOne[i].price);
+            newDiv[day] = new createElement("div", document.getElementById("container"), "item", "");
+            newButton[day] = new createElement("button", newDiv[day], "buttons", "ADD");
+            itemNumber[day] = new createElement("textarea", newDiv[day], "input", "1");
+            info[day] = new createElement("blockquote", newDiv[day], "info", weekOne[day].name + "\r\n$" + weekOne[day].price);
 
-                newButton[i].onclick = function () {
-                    //   cart.push(weekOne[i]);
-                    if (cart[weekOne[i].name]) {
-                        cart[weekOne[i].name]++;
-                    }
-                    else
-                        cart[weekOne[i].name] = 1;
+            newButton[day].onclick = function () {
+                //   cart.push(weekOne[i]);
+                if (cart[weekOne[day].name]) {
+                    cart[weekOne[day].name]++;
+                }
+                else
+                    cart[weekOne[day].name] = 1;
 
-                    newButton[i].classList = "clicked-buttons";
-                    setTimeout(function () {
-                        newButton[i].classList = "buttons";
-                    }, 150);
-                };
-            }
+                newButton[day].classList = "clicked-buttons";
+                setTimeout(function () {
+                    newButton[day].classList = "buttons";
+                }, 100);
+            };
         }
 
         else {
 
-            for (let i = 0; i < weekTwo.length; i++) {
-                newDiv[i] = new createElement("div", document.getElementById("container"), "item", "");
-                newButton[i] = new createElement("button", newDiv[i], "buttons", "ADD");
-                itemNumber[i] = new createElement("textarea", newDiv[i], "input", "1");
-                info[i] = new createElement("blockquote", newDiv[i], "info", weekTwo[i].name + "\r\n$" + weekTwo[i].price);
+            newDiv[day] = new createElement("div", document.getElementById("container"), "item", "");
+            newButton[day] = new createElement("button", newDiv[day], "buttons", "ADD");
+            itemNumber[day] = new createElement("textarea", newDiv[day], "input", "1");
+            info[day] = new createElement("blockquote", newDiv[day], "info", weekTwo[day].name + "\r\n$" + weekTwo[day].price);
 
-                newButton[i].onclick = function () {
-                    //cart.push(weekTwo[i]);
-                    if (cart[weekTwo[i].name]) {
-                        cart[weekTwo[i].name]++;
-                    }
-                    else
-                        cart[weekTwo[i].name] = 1;
+            newButton[day].onclick = function () {
+                //cart.push(weekTwo[i]);
+                if (cart[weekTwo[day].name]) {
+                    cart[weekTwo[day].name]++;
+                }
+                else
+                    cart[weekTwo[day].name] = 1;
 
-                    newButton[i].classList = "clicked-buttons";
-                    setTimeout(function () {
-                        newButton[i].classList = "buttons";
-                    }, 150);
-                };
-            }
+                newButton[day].classList = "clicked-buttons";
+                setTimeout(function () {
+                    newButton[day].classList = "buttons";
+                }, 100);
+            };
+   
         }
     }
 }
@@ -211,7 +238,7 @@ function hideMenu() {
 
     document.getElementById("order-online").innerHTML = "CART";
     document.getElementById("cart-container").style.display = "block";
- //   document.getElementById("ul").style.display = "block";
+    //   document.getElementById("ul").style.display = "block";
 
     let backButton = new createElement("button", document.getElementById("cart-container"), "back-button", "BACK");
 
@@ -225,7 +252,7 @@ function hideMenu() {
         document.getElementById("cart-container").style.display = "none";
     }
 
-   // let checkoutButton;
+    // let checkoutButton;
 
     let num = 0;
     // display cart items
@@ -233,7 +260,7 @@ function hideMenu() {
     displaycart = [];
     Object.keys(cart).forEach(function (name, index) {
         console.log(name + " = " + this[name]);
-        displaycart[name] = new createElement("p", document.getElementById("cart-container"), "cart-item", name + " " + this[name] + " $" + this[name] * getAllItemPrice(name)); 
+        displaycart[name] = new createElement("p", document.getElementById("cart-container"), "cart-item", name + " " + this[name] + " $" + this[name] * getAllItemPrice(name));
         num++;
 
         let sum = 0;
@@ -245,9 +272,9 @@ function hideMenu() {
 
     }, cart);
 
- 
 
-    
+
+
 
 
     if (num >= 1) {
@@ -269,13 +296,13 @@ function hideMenu() {
             studentNumber.setAttribute("type", "text");
             studentNumber.setAttribute("placeholder", "Student Number");
 
-           //console.log(document.getElementById("student-name").value);
+            //console.log(document.getElementById("student-name").value);
             let testButton = new createElement("button", document.getElementById("student-form"), "x-button", "X");
             testButton.onclick = function () {
                 console.log(studentName.value);
                 console.log(tutorClass.value);
                 console.log(studentNumber.value);
-}
+            }
 
         }
     }
@@ -283,5 +310,4 @@ function hideMenu() {
     else {
         new createElement("p", document.getElementById("cart-container"), "no-items", "NO ITEMS IN CART");
     }
-
 }
