@@ -130,7 +130,11 @@ function displayMenu(menu, week) {
             newButton[i] = new createElement("button", newDiv[i], "buttons", "ADD");
             itemNumber[i] = new createElement("input", newDiv[i], "input", "1");
             itemNumber[i].setAttribute("type", "number");
+            itemNumber[i].setAttribute("min", "1");
+            itemNumber[i].setAttribute("max", "3");
+            itemNumber[i].setAttribute("onkeydown", "return false;")
             itemNumber[i].value = 1;
+            
             info[i] = new createElement("blockquote", newDiv[i], "info", morningTea[i].name + "<br>$" + morningTea[i].price);
 
             newButton[i].onclick = function () {
@@ -190,6 +194,9 @@ function displayMenu(menu, week) {
             newButton[day] = new createElement("button", newDiv[day], "buttons", "ADD");
             itemNumber[day] = new createElement("input", newDiv[day], "input", "1");
             itemNumber[day].setAttribute("type", "number");
+            itemNumber[day].setAttribute("min", "1");
+            itemNumber[day].setAttribute("max", "1");
+            itemNumber[day].setAttribute("onkeydown", "return false;")
             itemNumber[day].value = 1;
             info[day] = new createElement("blockquote", newDiv[day], "info", weekOne[day].name + "<br>$" + weekOne[day].price);
 
@@ -215,6 +222,9 @@ function displayMenu(menu, week) {
             newButton[day] = new createElement("button", newDiv[day], "buttons", "ADD");
             itemNumber[day] = new createElement("input", newDiv[day], "input", "1");
             itemNumber[day].setAttribute("type", "number");
+            itemNumber[day].setAttribute("min", "1");
+            itemNumber[day].setAttribute("max", "1");
+            itemNumber[day].setAttribute("onkeydown", "return false;")
             itemNumber[day].value = 1;
             info[day] = new createElement("blockquote", newDiv[day], "info", weekTwo[day].name + "<br>$" + weekTwo[day].price);
 
