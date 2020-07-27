@@ -284,7 +284,6 @@ xButton.onclick = function () {
     document.getElementById("overlay").classList = "none";
 }
 
-
 // display cart & hide menu
 function hideMenu() {
     document.getElementById("container").style.display = "none";
