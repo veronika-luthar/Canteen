@@ -121,9 +121,6 @@ function createElement(type, obj, name, text) {
 // function to display the menu depending on button click
 function displayMenu(menu, week) {
 
-
-
-
     // clears "container" contents
     document.getElementById("container").innerHTML = "";
 
@@ -131,7 +128,9 @@ function displayMenu(menu, week) {
         for (let i = 0; i < morningTea.length; i++) {
             newDiv[i] = new createElement("div", document.getElementById("container"), "item", "");
             newButton[i] = new createElement("button", newDiv[i], "buttons", "ADD");
-            itemNumber[i] = new createElement("textarea", newDiv[i], "input", "1");
+            itemNumber[i] = new createElement("input", newDiv[i], "input", "1");
+            itemNumber[i].setAttribute("type", "number");
+            itemNumber[i].value = 1;
             info[i] = new createElement("blockquote", newDiv[i], "info", morningTea[i].name + "<br>$" + morningTea[i].price);
 
             newButton[i].onclick = function () {
@@ -150,13 +149,14 @@ function displayMenu(menu, week) {
         }
     }
 
-
-
-
     else { 
 
         // gets current day
         switch (new Date().getDay()) {
+            // Sunday (displays monday menu)
+            case 0:
+                day = 0
+                break;
             // Monday
             case 1:
                 day = 0
@@ -177,13 +177,20 @@ function displayMenu(menu, week) {
             case 5:
                 day = 4
                 break;
+            // Saturday (displays monday menu)
+            case 6:
+                day = 0
+                break;
         }
 
+        // displays week 1 lunch menu
         if (week === 1) {
 
             newDiv[day] = new createElement("div", document.getElementById("container"), "item", "");
             newButton[day] = new createElement("button", newDiv[day], "buttons", "ADD");
-            itemNumber[day] = new createElement("textarea", newDiv[day], "input", "1");
+            itemNumber[day] = new createElement("input", newDiv[day], "input", "1");
+            itemNumber[day].setAttribute("type", "number");
+            itemNumber[day].value = 1;
             info[day] = new createElement("blockquote", newDiv[day], "info", weekOne[day].name + "<br>$" + weekOne[day].price);
 
             newButton[day].onclick = function () {
@@ -201,11 +208,14 @@ function displayMenu(menu, week) {
             };
         }
 
+        // displays week 2 lunch menu
         else {
 
             newDiv[day] = new createElement("div", document.getElementById("container"), "item", "");
             newButton[day] = new createElement("button", newDiv[day], "buttons", "ADD");
-            itemNumber[day] = new createElement("textarea", newDiv[day], "input", "1");
+            itemNumber[day] = new createElement("input", newDiv[day], "input", "1");
+            itemNumber[day].setAttribute("type", "number");
+            itemNumber[day].value = 1;
             info[day] = new createElement("blockquote", newDiv[day], "info", weekTwo[day].name + "<br>$" + weekTwo[day].price);
 
             newButton[day].onclick = function () {
@@ -226,6 +236,45 @@ function displayMenu(menu, week) {
     }
 }
 
+// checkout form inputs
+
+
+// student name input field
+let studentName = new createElement("input", document.getElementById("student-form"), "student-name", "Student Name");
+studentName.setAttribute("type", "text");
+studentName.setAttribute("placeholder", "Student Name");
+
+// tutor class input field
+let tutorClass = new createElement("input", document.getElementById("student-form"), "tutor-class", "Tutor Class");
+tutorClass.setAttribute("type", "text");
+tutorClass.setAttribute("placeholder", "Tutor Class");
+
+// student number input field
+let studentNumber = new createElement("input", document.getElementById("student-form"), "student-number", "Student Number");
+studentNumber.setAttribute("type", "text");
+studentNumber.setAttribute("placeholder", "Student Number");
+
+// "place order" button
+let placeOrder = new createElement("button", document.getElementById("student-form"), "place-order-button", "Place Order");
+placeOrder.onclick = function () {
+    console.log(studentName.value);
+    console.log(tutorClass.value);
+    console.log(studentNumber.value);
+
+    //document.getElementById("student-form").style.display = "none";
+    //document.getElementById("body").style = "none";
+    //ddocument.getElementById("overlay").classList = "none";
+}
+
+// x button
+let xButton = new createElement("button", document.getElementById("student-form"), "x-button", "X");
+xButton.onclick = function () {
+    document.getElementById("student-form").style.display = "none";
+    document.getElementById("body").style = "none";
+    document.getElementById("overlay").classList = "none";
+}
+
+
 // display cart & hide menu
 function hideMenu() {
     document.getElementById("container").style.display = "none";
@@ -237,7 +286,6 @@ function hideMenu() {
 
     document.getElementById("order-online").innerHTML = "CART";
     document.getElementById("cart-container").style.display = "block";
-    //   document.getElementById("ul").style.display = "block";
 
     let backButton = new createElement("button", document.getElementById("cart-container"), "back-button", "BACK");
 
@@ -262,19 +310,14 @@ function hideMenu() {
         displaycart[name] = new createElement("p", document.getElementById("cart-container"), "cart-item", name + " " + this[name] + " $" + this[name] * getAllItemPrice(name));
         num++;
 
-        let sum = 0;
+      //  let sum = 0;
 
-        for (let i = 0; i < getAllItemPrice(name).length; i++) {
-            sum = sum + getAllItemPrice(name)[i];
-            console.log(sum);
-        }
+       // for (let i = 0; i < getAllItemPrice(name).length; i++) {
+    //        sum = sum + getAllItemPrice(name)[i];
+     //       console.log(sum);
+     //   }
 
     }, cart);
-
-
-
-
-
 
     if (num >= 1) {
         let checkoutButton = new createElement("button", document.getElementById("cart-container"), "checkout-button", "CHECKOUT");
@@ -283,26 +326,7 @@ function hideMenu() {
             document.getElementById("overlay").classList = "overlay";
             document.getElementById("body").style = "overflow: hidden";
             document.getElementById("student-form").style.display = "flex";
-            let studentName = new createElement("input", document.getElementById("student-form"), "student-name", "Student Name");
-            studentName.setAttribute("type", "text");
-            studentName.setAttribute("placeholder", "Student Name");
-
-            let tutorClass = new createElement("input", document.getElementById("student-form"), "tutor-class", "Tutor Class");
-            tutorClass.setAttribute("type", "text");
-            tutorClass.setAttribute("placeholder", "Tutor Class");
-
-            let studentNumber = new createElement("input", document.getElementById("student-form"), "student-number", "Student Number");
-            studentNumber.setAttribute("type", "text");
-            studentNumber.setAttribute("placeholder", "Student Number");
-
-            //console.log(document.getElementById("student-name").value);
-            let testButton = new createElement("button", document.getElementById("student-form"), "x-button", "X");
-            testButton.onclick = function () {
-                console.log(studentName.value);
-                console.log(tutorClass.value);
-                console.log(studentNumber.value);
-            }
-
+  
         }
     }
 

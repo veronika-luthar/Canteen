@@ -158,7 +158,7 @@
 }
 
 .input {
-    background: #E4E4E4;
+    background: #cfcfcf;
     width: 125px;
     height: 50px;
     transform: translateY(625%) translateX(-166%);
@@ -387,4 +387,17 @@
     position: absolute;
     right: 10px;
     top: 10px;
+}
+
+.place-order-button {
+    background-color: #00583D;
+    color: #fff;
+    width: 200px;
+    height: 50px;
+    border: none;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 800;
+    position: relative;
+    margin: 10px;
 }
