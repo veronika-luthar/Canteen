@@ -135,20 +135,26 @@ function displayMenu(menu, week) {
             itemNumber[i].setAttribute("onkeydown", "return false;")
             itemNumber[i].value = 1;
             
+
             info[i] = new createElement("blockquote", newDiv[i], "info", morningTea[i].name + "<br>$" + morningTea[i].price);
 
             newButton[i].onclick = function () {
+
+                console.log(itemNumber[i].value);
                 // pushes the morning tea item's name to the cart array
                 if (cart[morningTea[i].name]) {
-                    cart[morningTea[i].name]++;
+                    cart[morningTea[i].name] = itemNumber[i].value * cart[morningTea[i].name] - 1;
+                    
                 }
                 else
-                    cart[morningTea[i].name] = 1;
+                    cart[morningTea[i].name] = itemNumber[i].value;
                  // on "add" button click it changes colour and then changes back a second later
                 newButton[i].classList = "clicked-buttons";
                 setTimeout(function () {
                     newButton[i].classList = "buttons";
                 }, 100);
+
+
             };
         }
     }

@@ -401,3 +401,18 @@
     position: relative;
     margin: 10px;
 }
+
+.sandwich-options {
+    background-color: white;
+    top: 25%;
+    left: 30%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 40%;
+    position: absolute;
+    margin-bottom: 50px;
+    position: fixed;
+    align-items: center;
+}
