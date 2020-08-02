@@ -5,6 +5,7 @@ let newDiv = [];
 let newButton = [];
 let info = [];
 let itemNumber = [];
+let optionsDiv = [];
 
 
 // function to create menu items and put them in an array
@@ -17,10 +18,15 @@ function menuItems(name, price, type) {
 // function to get the price from each array
 function getPrice(array, name) {
     for (let i = 0; i < array.length; i++) {
-        if (name = array[i].name) {
+//        console.log(name + " " + array[i].name + " " + array[i].price);
+        if (name == array[i].name) {
+//            console.log("--");
             return array[i].price;
+            
         }
+        
     }
+
     return -1;
 }
 
@@ -52,6 +58,14 @@ morningTea.push(new menuItems("Brownie", 3, "Morning Tea"));
 morningTea.push(new menuItems("Cheese Pulls", 3, "Morning Tea"));
 morningTea.push(new menuItems("Sandwiches", 4, "Morning Tea"));
 morningTea.push(new menuItems("Bagels", 4, "Morning Tea"));
+
+let sandwichOptions = [];
+
+sandwichOptions.push("Beef, cheese, lettuce and onion");
+sandwichOptions.push("Ham, tomato, egg, lettuce and mayo");
+sandwichOptions.push("Bacon, lettuce and tomato");
+sandwichOptions.push("Vegetarian (egg, tomato, alfa sprouts, cucumber and mustard)");
+sandwichOptions.push("Chicken, creamy cheese, salad and apricot");
 
 // lunch menu for week one
 let weekOne = [];
@@ -111,10 +125,11 @@ function dropdown(week) {
 }
 
 // creating an element for the menu display
-function createElement(type, obj, name, text) {
+function createElement(type, obj, name, text, aid ) {
     array = document.createElement(type);
     array.classList = name;
     array.innerHTML = text;
+    if (aid) array.id = aid;
     return obj.appendChild(array);
 }
 
@@ -127,7 +142,7 @@ function displayMenu(menu, week) {
     if (menu === "morning tea") {
         for (let i = 0; i < morningTea.length; i++) {
             newDiv[i] = new createElement("div", document.getElementById("container"), "item", "");
-            newButton[i] = new createElement("button", newDiv[i], "buttons", "ADD");
+            newButton[i] = new createElement("button", newDiv[i], "buttons", "ADD", morningTea[i].name);
             itemNumber[i] = new createElement("input", newDiv[i], "input", "1");
             itemNumber[i].setAttribute("type", "number");
             itemNumber[i].setAttribute("min", "1");
@@ -140,19 +155,32 @@ function displayMenu(menu, week) {
 
             newButton[i].onclick = function () {
 
-                console.log(itemNumber[i].value);
-                // pushes the morning tea item's name to the cart array
-                if (cart[morningTea[i].name]) {
-                    cart[morningTea[i].name] = itemNumber[i].value * cart[morningTea[i].name] - 1;
+                if (morningTea[i].name == "Sandwiches") {
+                    sandwichDiv = new createElement("div", document.getElementById("body"), "sandwich-options", "");
                     
+                    for (let i = 0; i < sandwichOptions.length; i++) {
+                        optionsDiv[i] = new createElement("div", sandwichDiv, "sandwich-options-div", "");
+                        //info[i] = new createElement("blockquote", optionsDiv[i], "info", sandwichOptions[i]);
+                        newButton[i] = new createElement("button", optionsDiv[i], "sandwich-buttons", "ADD", sandwichOptions);
+                    }
+                    console.log('Hi');
                 }
-                else
-                    cart[morningTea[i].name] = itemNumber[i].value;
-                 // on "add" button click it changes colour and then changes back a second later
-                newButton[i].classList = "clicked-buttons";
-                setTimeout(function () {
-                    newButton[i].classList = "buttons";
-                }, 100);
+
+                else {
+
+                    // pushes the morning tea item's name to the cart array
+                    if (cart[morningTea[i].name]) {
+                        cart[morningTea[i].name] = cart[morningTea[i].name] + Number(itemNumber[i].value);
+
+                    }
+                    else
+                        cart[morningTea[i].name] = Number(itemNumber[i].value);
+                    // on "add" button click it changes colour and then changes back a second later
+                    newButton[i].classList = "clicked-buttons";
+                    setTimeout(function () {
+                        newButton[i].classList = "buttons";
+                    }, 100);
+                }
 
 
             };
@@ -209,10 +237,11 @@ function displayMenu(menu, week) {
             newButton[day].onclick = function () {
                 //   cart.push(weekOne[i]);
                 if (cart[weekOne[day].name]) {
-                    cart[weekOne[day].name]++;
+                    cart[weekOne[day].name] = cart[weekOne[day].name] + Number(itemNumber[day].value);
+
                 }
                 else
-                    cart[weekOne[day].name] = 1;
+                    cart[weekOne[day].name] = Number(itemNumber[day].value);
 
                 newButton[day].classList = "clicked-buttons";
                 setTimeout(function () {
@@ -235,12 +264,17 @@ function displayMenu(menu, week) {
             info[day] = new createElement("blockquote", newDiv[day], "info", weekTwo[day].name + "<br>$" + weekTwo[day].price);
 
             newButton[day].onclick = function () {
+
+              //  mennyi cucc van mar ? sok ? alert nem vehetsz tobbet
+
+               // szendvics? 
                 //cart.push(weekTwo[i]);
                 if (cart[weekTwo[day].name]) {
-                    cart[weekTwo[day].name]++;
+                    cart[weekTwo[day].name] = cart[weekTwo[day].name] + Number(itemNumber[day].value);
+
                 }
                 else
-                    cart[weekTwo[day].name] = 1;
+                    cart[weekTwo[day].name] = Number(itemNumber[day].value);
 
                 newButton[day].classList = "clicked-buttons";
                 setTimeout(function () {
@@ -322,7 +356,8 @@ function hideMenu() {
     displaycart = [];
     Object.keys(cart).forEach(function (name, index) {
         console.log(name + " = " + this[name]);
-        displaycart[name] = new createElement("p", document.getElementById("cart-container"), "cart-item", name + " " + this[name] + " $" + this[name] * getAllItemPrice(name));
+        if (this[name] > 0)
+            displaycart[name] = new createElement("p", document.getElementById("cart-container"), "cart-item", name + " " + this[name] + " $" + this[name] * getAllItemPrice(name));
         num++;
 
       //  let sum = 0;
