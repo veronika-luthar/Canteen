@@ -60,6 +60,7 @@ morningTea.push(new menuItems("Cheese Pulls", 3, "Morning Tea"));
 morningTea.push(new menuItems("Sandwiches", 4, "Morning Tea"));
 morningTea.push(new menuItems("Bagels", 4, "Morning Tea"));
 
+// sandwich sub options 
 let sandwichOptions = [];
 
 sandwichOptions.push("Beef, cheese, lettuce and onion");
@@ -67,6 +68,12 @@ sandwichOptions.push("Ham, tomato, egg, lettuce and mayo");
 sandwichOptions.push("Bacon, lettuce and tomato");
 sandwichOptions.push("Vegetarian (egg, tomato, alfa sprouts, cucumber and mustard)");
 sandwichOptions.push("Chicken, creamy cheese, salad and apricot");
+
+// bagel sub options
+let bagelOptions = [];
+
+bagelOptions.push("Smoked salmon, creamy cheese, alfa sprouts and tomato relish");
+bagelOptions.push("Tomato, onion, creamy cheese, avocado and tomato relish");
 
 // lunch menu for week one
 let weekOne = [];
@@ -134,6 +141,14 @@ function createElement(type, obj, name, text, aid ) {
     return obj.appendChild(array);
 }
 
+// changes the colour of the "add" buttons to be yellow for 100 ticks
+function buttonColourChange(array, type, clicked, defaultbutton) {
+    array[type].classList = clicked;
+    setTimeout(function () {
+        array[type].classList = defaultbutton;
+    }, 100);
+}
+
 // function to display the menu depending on button click
 function displayMenu(menu, week) {
 
@@ -142,8 +157,14 @@ function displayMenu(menu, week) {
 
     if (menu === "morning tea") {
         for (let i = 0; i < morningTea.length; i++) {
+
+            // creates a "div"s for the items to go in
             newDiv[i] = new createElement("div", document.getElementById("container"), "item", "");
+
+            // creates a new button for each item in the array
             newButton[i] = new createElement("button", newDiv[i], "buttons", "ADD", morningTea[i].name);
+
+            // creates a text input where you can choose the amount you would like to put in the cart. min set at 1, max set at 3
             itemNumber[i] = new createElement("input", newDiv[i], "input", "1");
             itemNumber[i].setAttribute("type", "number");
             itemNumber[i].setAttribute("min", "1");
@@ -151,29 +172,50 @@ function displayMenu(menu, week) {
             itemNumber[i].setAttribute("onkeydown", "return false;")
             itemNumber[i].value = 1;
             
-
+            // displays the name and price for each item
             info[i] = new createElement("blockquote", newDiv[i], "info", morningTea[i].name + "<br>$" + morningTea[i].price);
 
             newButton[i].onclick = function () {
 
-                newButton[i].classList = "clicked-buttons";
-                setTimeout(function () {
-                    newButton[i].classList = "buttons";
-                }, 100);
+                // changes the colour of the button to yellow for 100 ticks as user feedback
+                buttonColourChange(newButton, i, "clicked-buttons", "buttons");
 
+                // checks if the item is sandwiches
                 if (morningTea[i].name == "Sandwiches") {
-                    sandwichDiv = new createElement("div", document.getElementById("body"), "sandwich-options", "");
+
+                    document.getElementById("overlay").classList = "overlay";
+                    document.getElementById("body").style = "overflow: hidden";
+                    // creates a "div" to hold all the elements in
+                    sandwichDiv = new createElement("div", document.getElementById("body"), "sub-options", "");
                     
                     for (let i = 0; i < sandwichOptions.length; i++) {
-                        optionsDiv[i] = new createElement("div", sandwichDiv, "sandwich-options-div", "");
+
+                        // creates a div for the text and buttons to be stored in
+                        optionsDiv[i] = new createElement("div", sandwichDiv, "sub-options-div", "");
+
+                        // displays the options
                         info[i] = new createElement("blockquote", optionsDiv[i], "info", sandwichOptions[i]);
-                        subButton[i] = new createElement("button", optionsDiv[i], "sandwich-buttons", "ADD", sandwichOptions);
+
+                        // creates a new button for each item in the array
+                        subButton[i] = new createElement("button", optionsDiv[i], "sub-buttons", "ADD", sandwichOptions);
+
+                        // changes the colour of the button to yellow for 100 ticks as user feedback
+                        subButton[i].onclick = function () {
+                            buttonColourChange(subButton, i, "clicked-sub-buttons", "sub-buttons");
+                        }
+                    }
+                }
+
+                else if (morningTea[i].name == "Bagels") {
+                    bagelDiv = new createElement("div", document.getElementById("body"), "sub-options", "");
+
+                    for (let i = 0; i < bagelOptions.length; i++) {
+                        optionsDiv[i] = new createElement("div", bagelDiv, "sub-options-div", "");
+                        info[i] = new createElement("blockquote", optionsDiv[i], "info", bagelOptions[i]);
+                        subButton[i] = new createElement("button", optionsDiv[i], "sub-buttons", "ADD", bagelOptions);
 
                         subButton[i].onclick = function () {
-                            subButton[i].classList = "clicked-sandwich-buttons";
-                            setTimeout(function () {
-                                subButton[i].classList = "sandwich-buttons";
-                            }, 100);
+                            buttonColourChange(subButton, i, "clicked-sub-buttons", "sub-buttons");
                         }
                     }
                 }
@@ -244,18 +286,16 @@ function displayMenu(menu, week) {
             info[day] = new createElement("blockquote", newDiv[day], "info", weekOne[day].name + "<br>$" + weekOne[day].price);
 
             newButton[day].onclick = function () {
+
+                buttonColourChange(newButton, day, "clicked-buttons", "buttons");
                 //   cart.push(weekOne[i]);
                 if (cart[weekOne[day].name]) {
                     cart[weekOne[day].name] = cart[weekOne[day].name] + Number(itemNumber[day].value);
 
                 }
-                else
+                else {
                     cart[weekOne[day].name] = Number(itemNumber[day].value);
-
-                newButton[day].classList = "clicked-buttons";
-                setTimeout(function () {
-                    newButton[day].classList = "buttons";
-                }, 100);
+                }
             };
         }
 
@@ -275,20 +315,14 @@ function displayMenu(menu, week) {
             newButton[day].onclick = function () {
 
               //  mennyi cucc van mar ? sok ? alert nem vehetsz tobbet
+                buttonColourChange(newButton, day, "clicked-buttons", "buttons");
 
-               // szendvics? 
-                //cart.push(weekTwo[i]);
                 if (cart[weekTwo[day].name]) {
                     cart[weekTwo[day].name] = cart[weekTwo[day].name] + Number(itemNumber[day].value);
 
                 }
                 else
                     cart[weekTwo[day].name] = Number(itemNumber[day].value);
-
-                newButton[day].classList = "clicked-buttons";
-                setTimeout(function () {
-                    newButton[day].classList = "buttons";
-                }, 100);
             };
    
         }

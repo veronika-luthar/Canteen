@@ -395,7 +395,7 @@
     margin: 10px;
 }
 
-.sandwich-options {
+.sub-options {
     background-color: white;
     top: 25%;
     left: 30%;
@@ -410,7 +410,7 @@
     align-items: center;
 }
 
-.sandwich-options-div {
+.sub-options-div {
     display: flex;
     flex-direction: column;
     background-color: rgba(0, 0, 0, 0.6);
@@ -419,9 +419,7 @@
     width: 90%;
 }
 
-.sandwich-buttons {
-
-    display: inline-block;
+.sub-buttons {
     top: 75vh;
     background-color: #00583D;
     color: #fff;
@@ -434,7 +432,7 @@
     float: right;
 }
 
-.clicked-sandwich-buttons {
+.clicked-sub-buttons {
     top: 75vh;
     background-color: #FFD614;
     color: #00583D;
