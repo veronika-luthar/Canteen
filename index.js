@@ -6,6 +6,7 @@ let newButton = [];
 let info = [];
 let itemNumber = [];
 let optionsDiv = [];
+let subButton = [];
 
 
 // function to create menu items and put them in an array
@@ -155,15 +156,26 @@ function displayMenu(menu, week) {
 
             newButton[i].onclick = function () {
 
+                newButton[i].classList = "clicked-buttons";
+                setTimeout(function () {
+                    newButton[i].classList = "buttons";
+                }, 100);
+
                 if (morningTea[i].name == "Sandwiches") {
                     sandwichDiv = new createElement("div", document.getElementById("body"), "sandwich-options", "");
                     
                     for (let i = 0; i < sandwichOptions.length; i++) {
                         optionsDiv[i] = new createElement("div", sandwichDiv, "sandwich-options-div", "");
-                        //info[i] = new createElement("blockquote", optionsDiv[i], "info", sandwichOptions[i]);
-                        newButton[i] = new createElement("button", optionsDiv[i], "sandwich-buttons", "ADD", sandwichOptions);
+                        info[i] = new createElement("blockquote", optionsDiv[i], "info", sandwichOptions[i]);
+                        subButton[i] = new createElement("button", optionsDiv[i], "sandwich-buttons", "ADD", sandwichOptions);
+
+                        subButton[i].onclick = function () {
+                            subButton[i].classList = "clicked-sandwich-buttons";
+                            setTimeout(function () {
+                                subButton[i].classList = "sandwich-buttons";
+                            }, 100);
+                        }
                     }
-                    console.log('Hi');
                 }
 
                 else {
@@ -173,13 +185,10 @@ function displayMenu(menu, week) {
                         cart[morningTea[i].name] = cart[morningTea[i].name] + Number(itemNumber[i].value);
 
                     }
-                    else
+                    else {
                         cart[morningTea[i].name] = Number(itemNumber[i].value);
                     // on "add" button click it changes colour and then changes back a second later
-                    newButton[i].classList = "clicked-buttons";
-                    setTimeout(function () {
-                        newButton[i].classList = "buttons";
-                    }, 100);
+                    }
                 }
 
 

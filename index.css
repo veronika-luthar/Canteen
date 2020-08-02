@@ -434,6 +434,18 @@
     float: right;
 }
 
+.clicked-sandwich-buttons {
+    top: 75vh;
+    background-color: #FFD614;
+    color: #00583D;
+    width: 200px;
+    height: 50px;
+    border: none;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 800;
+}
+
 .test {
     float:left;
 }
