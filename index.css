@@ -399,7 +399,7 @@
     background-color: white;
     top: 25%;
     left: 30%;
-    height: 50%;
+    height: max-content;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -430,6 +430,7 @@
     font-size: 24px;
     font-weight: 800;
     float: right;
+    z-index: +1;
 }
 
 .clicked-sub-buttons {

@@ -141,6 +141,17 @@ function createElement(type, obj, name, text, aid ) {
     return obj.appendChild(array);
 }
 
+// x button
+
+function xButtonCreate(form) {
+let xButton = new createElement("button", form, "x-button", "X");
+xButton.onclick = function () {
+    form.style.display = "none";
+    document.getElementById("body").style = "none";
+    document.getElementById("overlay").classList = "none";
+    }
+}
+
 // changes the colour of the "add" buttons to be yellow for 100 ticks
 function buttonColourChange(array, type, clicked, defaultbutton) {
     array[type].classList = clicked;
@@ -183,11 +194,15 @@ function displayMenu(menu, week) {
                 // checks if the item is sandwiches
                 if (morningTea[i].name == "Sandwiches") {
 
+                    // grays out the background and turns off overflow
                     document.getElementById("overlay").classList = "overlay";
                     document.getElementById("body").style = "overflow: hidden";
+
                     // creates a "div" to hold all the elements in
-                    sandwichDiv = new createElement("div", document.getElementById("body"), "sub-options", "");
-                    
+                    let sandwichDiv = new createElement("div", document.getElementById("body"), "sub-options", "");
+
+                    xButtonCreate(sandwichDiv);
+
                     for (let i = 0; i < sandwichOptions.length; i++) {
 
                         // creates a div for the text and buttons to be stored in
@@ -202,20 +217,56 @@ function displayMenu(menu, week) {
                         // changes the colour of the button to yellow for 100 ticks as user feedback
                         subButton[i].onclick = function () {
                             buttonColourChange(subButton, i, "clicked-sub-buttons", "sub-buttons");
+                            sandwichDiv.style.display = "none";
+                            document.getElementById("body").style = "none";
+                            document.getElementById("overlay").classList = "none";
+
+                            if (cart[sandwichOptions[i]]) {
+                                cart[sandwichOptions[i]]++;
+
+                            }
+                            else {
+                               cart[sandwichOptions[i]] = 1;
+                            }
                         }
                     }
                 }
 
+                // checks if the item is bagels
                 else if (morningTea[i].name == "Bagels") {
+
+                    // grays out the background and turns off overflow
+                    document.getElementById("overlay").classList = "overlay";
+                    document.getElementById("body").style = "overflow: hidden";
+
+                    // creates "div" to hold elements in
                     bagelDiv = new createElement("div", document.getElementById("body"), "sub-options", "");
 
+                    // creates "x" button
+                    xButtonCreate(bagelDiv);
+
                     for (let i = 0; i < bagelOptions.length; i++) {
+
+                        // creates a div, blockquote and button for each item in the array
                         optionsDiv[i] = new createElement("div", bagelDiv, "sub-options-div", "");
                         info[i] = new createElement("blockquote", optionsDiv[i], "info", bagelOptions[i]);
                         subButton[i] = new createElement("button", optionsDiv[i], "sub-buttons", "ADD", bagelOptions);
 
                         subButton[i].onclick = function () {
+                            
+                            bagelDiv.style.display = "none";
+                            document.getElementById("body").style = "none";
+                            document.getElementById("overlay").classList = "none";
+
                             buttonColourChange(subButton, i, "clicked-sub-buttons", "sub-buttons");
+
+                            if (cart[bagelOptions[i]]) {
+                                cart[bagelOptions[i]]++;
+
+                            }
+                            else {
+                                cart[bagelOptions[i]] = 1;
+                            }
                         }
                     }
                 }
@@ -359,13 +410,7 @@ placeOrder.onclick = function () {
     //ddocument.getElementById("overlay").classList = "none";
 }
 
-// x button
-let xButton = new createElement("button", document.getElementById("student-form"), "x-button", "X");
-xButton.onclick = function () {
-    document.getElementById("student-form").style.display = "none";
-    document.getElementById("body").style = "none";
-    document.getElementById("overlay").classList = "none";
-}
+
 
 // display cart & hide menu
 function hideMenu() {
@@ -391,11 +436,9 @@ function hideMenu() {
         document.getElementById("cart-container").style.display = "none";
     }
 
-    // let checkoutButton;
 
     let num = 0;
-    // display cart items
-    //for (let i = 0; i < cart.length; i++) {
+
     displaycart = [];
     Object.keys(cart).forEach(function (name, index) {
         console.log(name + " = " + this[name]);
@@ -403,12 +446,6 @@ function hideMenu() {
             displaycart[name] = new createElement("p", document.getElementById("cart-container"), "cart-item", name + " " + this[name] + " $" + this[name] * getAllItemPrice(name));
         num++;
 
-      //  let sum = 0;
-
-       // for (let i = 0; i < getAllItemPrice(name).length; i++) {
-    //        sum = sum + getAllItemPrice(name)[i];
-     //       console.log(sum);
-     //   }
 
     }, cart);
 
