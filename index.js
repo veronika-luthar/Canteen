@@ -16,6 +16,14 @@ function menuItems(name, price, type) {
     this.type = type;
 }
 
+function getType(array, type) {
+    for (let i = 0; i < array.length; i++) {
+        if (type == array[i].type) {
+            return array[i].type;
+        }
+    }
+}
+
 // function to get the price from each array
 function getPrice(array, name) {
     for (let i = 0; i < array.length; i++) {
@@ -169,6 +177,7 @@ function displayMenu(menu, week) {
     if (menu === "morning tea") {
         for (let i = 0; i < morningTea.length; i++) {
 
+            
             // creates a "div"s for the items to go in
             newDiv[i] = new createElement("div", document.getElementById("container"), "item", "");
 
@@ -188,6 +197,7 @@ function displayMenu(menu, week) {
 
             newButton[i].onclick = function () {
 
+               
                 // changes the colour of the button to yellow for 100 ticks as user feedback
                 buttonColourChange(newButton, i, "clicked-buttons", "buttons");
 
@@ -273,8 +283,12 @@ function displayMenu(menu, week) {
 
                 else {
 
+                    if (getType(morningTea[i], "Morning Tea") == "Morning Tea") {
+                        window.alert("sometext");
+                    }
+
                     // pushes the morning tea item's name to the cart array
-                    if (cart[morningTea[i].name]) {
+                    else if (cart[morningTea[i].name]) {
                         cart[morningTea[i].name] = cart[morningTea[i].name] + Number(itemNumber[i].value);
 
                     }
