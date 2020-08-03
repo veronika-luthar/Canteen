@@ -16,20 +16,12 @@ function menuItems(name, price, type) {
     this.type = type;
 }
 
-function getType(array, type) {
-    for (let i = 0; i < array.length; i++) {
-        if (type == array[i].type) {
-            return array[i].type;
-        }
-    }
-}
-
 // function to get the price from each array
 function getPrice(array, name) {
     for (let i = 0; i < array.length; i++) {
-//        console.log(name + " " + array[i].name + " " + array[i].price);
+       console.log(name + " " + array[i].name + " " + array[i].price);
         if (name == array[i].name) {
-//            console.log("--");
+            console.log("--");
             return array[i].price;
             
         }
@@ -71,22 +63,22 @@ morningTea.push(new menuItems("Bagels", 4, "Morning Tea"));
 // sandwich sub options 
 let sandwichOptions = [];
 
-sandwichOptions.push("Beef, cheese, lettuce and onion");
-sandwichOptions.push("Ham, tomato, egg, lettuce and mayo");
-sandwichOptions.push("Bacon, lettuce and tomato");
-sandwichOptions.push("Vegetarian (egg, tomato, alfa sprouts, cucumber and mustard)");
-sandwichOptions.push("Chicken, creamy cheese, salad and apricot");
+sandwichOptions.push(new menuItems("Beef, cheese, lettuce and onion", 4, "Morning Tea"));
+sandwichOptions.push(new menuItems("Ham, tomato, egg, lettuce and mayo", 4, "Morning Tea"));
+sandwichOptions.push(new menuItems("Bacon, lettuce and tomato", 4 , "Morning Tea"));
+sandwichOptions.push(new menuItems("Vegetarian (egg, tomato, alfa sprouts, cucumber and mustard)", 4, "Morning Tea"));
+sandwichOptions.push(new menuItems("Chicken, creamy cheese, salad and apricot", 4, "Morning Tea"));
 
 // bagel sub options
 let bagelOptions = [];
 
-bagelOptions.push("Smoked salmon, creamy cheese, alfa sprouts and tomato relish");
-bagelOptions.push("Tomato, onion, creamy cheese, avocado and tomato relish");
+bagelOptions.push(new menuItems("Smoked salmon, creamy cheese, alfa sprouts and tomato relish", 4, "Morning Tea"));
+bagelOptions.push(new menuItems("Tomato, onion, creamy cheese, avocado and tomato relish", 4, "Morning Tea"));
 
 // lunch menu for week one
 let weekOne = [];
 
-weekOne.push(new menuItems("Chicken nuggets with baked chips", 5, "Lunch"));
+weekOne.push(new menuItems("Chimkn nugets with baked chips", 5, "Lunch"));
 weekOne.push(new menuItems("Pumpkin and Feta bake", 5, "Lunch"));
 weekOne.push(new menuItems("Macaroni and cheese", 5, "Lunch"));
 weekOne.push(new menuItems("Butter chicken on rice", 5, "Lunch"));
@@ -104,6 +96,9 @@ weekTwo.push(new menuItems("Chicken or beef burgers with tomato relish and chees
 // cart array
 let cart = [];
 
+let morningTeaAmount = 0;
+let lunchAmount = 0;
+
 // displays the morning tea menu as default
 displayMenu("morning tea");
 
@@ -114,29 +109,34 @@ document.getElementById("student-form").style.display = "none";
 // on button click changes the buttons' styling and menu
 function menuButtonClick(dir) {
     if (dir === 1) {
+
+        dropdown();
         document.getElementById("lunch").classList = "button-current";
         document.getElementById("morning-tea").classList = "button-default";
-        document.getElementById("dropdown").classList.toggle("show")
+        document.getElementById("dropdown").style.display = "block";
+
+        let dropdownToggle = document.getElementById("dropdown");
+        dropdownToggle.onclick = function () {
+            document.getElementById("dropdown").style.display = "none";
+        }
+
     }
     else {
         document.getElementById("morning-tea").classList = "button-current";
         document.getElementById("lunch").classList = "button-default";
         displayMenu("morning tea");
-        document.getElementById("dropdown").classList.toggle("hide");
+        document.getElementById("dropdown").style.display = "none";
     }
 }
 
 // on "week" button click displays correct week
 function dropdown(week) {
     if (week === 1) {
-
         displayMenu("lunch", 1);
-        document.getElementById("dropdown").classList.toggle("hide");
     }
 
     else {
         displayMenu("lunch", 2);
-        document.getElementById("dropdown").classList.toggle("hide");
     }
 }
 
@@ -231,13 +231,22 @@ function displayMenu(menu, week) {
                             document.getElementById("body").style = "none";
                             document.getElementById("overlay").classList = "none";
 
-                            if (cart[sandwichOptions[i]]) {
+                            if (maxType.length == 3) {
+                                window.alert("yolo");
+                            }
+
+                            else if (cart[sandwichOptions[i]]) {
                                 cart[sandwichOptions[i]]++;
+                             //   maxType.push(morningTea[i].type);
+                              //  console.log(maxType);
+
 
                             }
                             else {
-                               cart[sandwichOptions[i]] = 1;
+                                cart[sandwichOptions[i]] = 1;
+                            //    maxType.push(morningTea[i].type);
                             }
+                            console.log(maxType);
                         }
                     }
                 }
@@ -273,6 +282,7 @@ function displayMenu(menu, week) {
                             if (cart[bagelOptions[i]]) {
                                 cart[bagelOptions[i]]++;
 
+
                             }
                             else {
                                 cart[bagelOptions[i]] = 1;
@@ -283,17 +293,26 @@ function displayMenu(menu, week) {
 
                 else {
 
-                    if (getType(morningTea[i], "Morning Tea") == "Morning Tea") {
-                        window.alert("sometext");
+                    if (morningTeaAmount == 3) {
+                        window.alert("yolo");
                     }
-
                     // pushes the morning tea item's name to the cart array
                     else if (cart[morningTea[i].name]) {
                         cart[morningTea[i].name] = cart[morningTea[i].name] + Number(itemNumber[i].value);
+                        morningTeaAmount = morningTeaAmount + Number(itemNumber[i].value);
+
+                      //  for (let i = 0; i < Number(itemNumber[i].value); i++) {
+                     //       maxType.push(morningTea[i].type * Number(itemNumber[i].value));
+                    //        console.log(maxType.length);
+                     //   }
+                      
 
                     }
                     else {
                         cart[morningTea[i].name] = Number(itemNumber[i].value);
+                        morningTeaAmount++;     
+                      //  maxType.push(morningTea[i].type);
+                     //   maxType.push(morningTea[i].type) = Number(itemNumber[i].value);
                     // on "add" button click it changes colour and then changes back a second later
                     }
                 }
@@ -354,12 +373,18 @@ function displayMenu(menu, week) {
 
                 buttonColourChange(newButton, day, "clicked-buttons", "buttons");
                 //   cart.push(weekOne[i]);
-                if (cart[weekOne[day].name]) {
+                if (lunchAmount == 1) {
+                    window.alert("You may only order 1 lunch item!");
+                }
+
+                else if (cart[weekOne[day].name]) {
                     cart[weekOne[day].name] = cart[weekOne[day].name] + Number(itemNumber[day].value);
+                    lunchAmount = lunchAmount + Number(itemNumber[day].value);
 
                 }
                 else {
                     cart[weekOne[day].name] = Number(itemNumber[day].value);
+                    lunchAmount++;
                 }
             };
         }
@@ -382,12 +407,19 @@ function displayMenu(menu, week) {
               //  mennyi cucc van mar ? sok ? alert nem vehetsz tobbet
                 buttonColourChange(newButton, day, "clicked-buttons", "buttons");
 
-                if (cart[weekTwo[day].name]) {
+                if (lunchAmount == 1) {
+                    window.alert("You may only order 1 lunch item!");
+                }
+
+                else if (cart[weekTwo[day].name]) {
                     cart[weekTwo[day].name] = cart[weekTwo[day].name] + Number(itemNumber[day].value);
+                    lunchAmount = lunchAmount + Number(itemNumber[day].value);
 
                 }
-                else
+                else {
                     cart[weekTwo[day].name] = Number(itemNumber[day].value);
+                    lunchAmount++;
+                }
             };
    
         }
