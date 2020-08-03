@@ -19,9 +19,9 @@ function menuItems(name, price, type) {
 // function to get the price from each array
 function getPrice(array, name) {
     for (let i = 0; i < array.length; i++) {
-       console.log(name + " " + array[i].name + " " + array[i].price);
+  //     console.log(name + " " + array[i].name + " " + array[i].price);
         if (name == array[i].name) {
-            console.log("--");
+  //          console.log("--");
             return array[i].price;
             
         }
@@ -36,11 +36,13 @@ function getAllItemPrice(name) {
     let p0 = getPrice(morningTea, name);
     let p1 = getPrice(weekOne, name);
     let p2 = getPrice(weekTwo, name);
-    if (p0 => 0) {
+    if (p0 >= 0) {
         return p0;
     }
-    else if (p1 => 0) {
+    else if (p1 >= 0) {
+        console.log("p1");
         return p1;
+
     }
     else {
         return p2;
