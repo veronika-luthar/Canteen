@@ -181,6 +181,7 @@
     text-transform: uppercase;
 }
 
+
 .header {
     position: absolute;
     width: 100%;
@@ -394,28 +395,31 @@
     margin: 10px;
 }
 
+.options-info {
+    text-transform: uppercase;
+    width: 50%;
+    word-break: break-word;
+}
+
 .sub-options {
     background-color: white;
     top: 25%;
     left: 30%;
     height: max-content;
     display: flex;
-    justify-content: space-between;
     flex-direction: column;
     width: 40%;
-    position: absolute;
-    margin-bottom: 50px;
     position: fixed;
-    align-items: center;
+    margin-bottom: 50px;
+    text-align: left;
 }
 
 .sub-options-div {
     display: flex;
-    flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.6);
-    position: relative;
-    height: 50px;
-    width: 90%;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin:  5px 0px; 
 }
 
 .sub-buttons {

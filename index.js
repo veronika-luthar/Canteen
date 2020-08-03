@@ -221,10 +221,10 @@ function displayMenu(menu, week) {
                         optionsDiv[i] = new createElement("div", sandwichDiv, "sub-options-div", "");
 
                         // displays the options
-                        info[i] = new createElement("blockquote", optionsDiv[i], "info", sandwichOptions[i]);
+                        info[i] = new createElement("blockquote", optionsDiv[i], "options-info", sandwichOptions[i].name);
 
                         // creates a new button for each item in the array
-                        subButton[i] = new createElement("button", optionsDiv[i], "sub-buttons", "ADD", sandwichOptions);
+                        subButton[i] = new createElement("button", optionsDiv[i], "sub-buttons", "ADD", sandwichOptions[i].name);
 
                         // changes the colour of the button to yellow for 100 ticks as user feedback
                         subButton[i].onclick = function () {
@@ -232,20 +232,21 @@ function displayMenu(menu, week) {
                             sandwichDiv.style.display = "none";
                             document.getElementById("body").style = "none";
                             document.getElementById("overlay").classList = "none";
+                            console.log(sandwichOptions[i].name);
 
-                            if (maxType.length == 3) {
-                                window.alert("yolo");
-                            }
+//                            if (maxType.length == 3) {
+  //                              window.alert("yolo");
+    //                        }
 
-                            else if (cart[sandwichOptions[i]]) {
-                                cart[sandwichOptions[i]]++;
+                            if (cart[sandwichOptions[i].name]) {
+                                cart[sandwichOptions[i].name]++;
                              //   maxType.push(morningTea[i].type);
                               //  console.log(maxType);
 
 
                             }
                             else {
-                                cart[sandwichOptions[i]] = 1;
+                                cart[sandwichOptions[i].name] = 1;
                             //    maxType.push(morningTea[i].type);
                             }
                             console.log(maxType);
@@ -270,8 +271,10 @@ function displayMenu(menu, week) {
 
                         // creates a div, blockquote and button for each item in the array
                         optionsDiv[i] = new createElement("div", bagelDiv, "sub-options-div", "");
-                        info[i] = new createElement("blockquote", optionsDiv[i], "info", bagelOptions[i]);
-                        subButton[i] = new createElement("button", optionsDiv[i], "sub-buttons", "ADD", bagelOptions);
+
+                        info[i] = new createElement("blockquote", optionsDiv[i], "options-info", bagelOptions[i].name);
+
+                        subButton[i] = new createElement("button", optionsDiv[i], "sub-buttons", "ADD", bagelOptions[i].name);
 
                         subButton[i].onclick = function () {
                             
@@ -281,13 +284,13 @@ function displayMenu(menu, week) {
 
                             buttonColourChange(subButton, i, "clicked-sub-buttons", "sub-buttons");
 
-                            if (cart[bagelOptions[i]]) {
-                                cart[bagelOptions[i]]++;
+                            if (cart[bagelOptions[i].name]) {
+                                cart[bagelOptions[i].name]++;
 
 
                             }
                             else {
-                                cart[bagelOptions[i]] = 1;
+                                cart[bagelOptions[i].name] = 1;
                             }
                         }
                     }
@@ -440,11 +443,13 @@ studentName.setAttribute("placeholder", "Student Name");
 let tutorClass = new createElement("input", document.getElementById("student-form"), "tutor-class", "Tutor Class");
 tutorClass.setAttribute("type", "text");
 tutorClass.setAttribute("placeholder", "Tutor Class");
+tutorClass.setAttribute("maxlength", 3);
 
 // student number input field
 let studentNumber = new createElement("input", document.getElementById("student-form"), "student-number", "Student Number");
 studentNumber.setAttribute("type", "text");
 studentNumber.setAttribute("placeholder", "Student Number");
+studentNumber.setAttribute("maxlength", 5);
 
 // "place order" button
 let placeOrder = new createElement("button", document.getElementById("student-form"), "place-order-button", "Place Order");
@@ -458,7 +463,8 @@ placeOrder.onclick = function () {
     //ddocument.getElementById("overlay").classList = "none";
 }
 
-
+// "x" button
+xButtonCreate(document.getElementById("student-form"));
 
 // display cart & hide menu
 function hideMenu() {
