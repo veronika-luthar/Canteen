@@ -101,6 +101,7 @@ let cart = [];
 
 let morningTeaAmount = 0;
 let lunchAmount = 0;
+let test = [];
 
 // displays the morning tea menu as default
 displayMenu("morning tea");
@@ -234,16 +235,20 @@ function displayMenu(menu, week) {
                             document.getElementById("body").style = "none";
                             document.getElementById("overlay").classList = "none";
 
-
                             var cartname = this.id + "-" + sandwichOptions[i].name;
 
-                            if (cart[cartname]) {
-                                cart[cartname]++;
+                            if (morningTeaAmount >= 3) {
+                                window.alert("You may only order 3 morning tea items!");
+                            }
 
+                            else if (cart[cartname]) {
+                                cart[cartname]++;
+                                morningTeaAmount++;
 
                             }
                             else {
                                 cart[cartname] = 1;
+                                morningTeaAmount = 1;
                             }
                         }
                     }
@@ -281,14 +286,20 @@ function displayMenu(menu, week) {
 
                             var cartname = this.id + "-" + bagelOptions[i].name;
 
+                            if (morningTeaAmount >= 3) {
+                                window.alert("You may only order 3 morning tea items!");
 
-                            if (cart[cartname]) {
+                            }
+
+                            else if (cart[cartname]) {
                                 cart[cartname]++;
-
+                                morningTeaAmount++;
+                                
 
                             }
                             else {
                                 cart[cartname] = 1;
+                                morningTeaAmount = 1;
                             }
                         }
                     }
@@ -296,27 +307,33 @@ function displayMenu(menu, week) {
 
                 else {
 
-                    if (morningTeaAmount == 3) {
-                        window.alert("yolo");
-                    }
+                //    if (morningTeaAmount >= 3) {
+                  //      window.alert("You may only order 3 morning tea items!");
+                //    }
                     // pushes the morning tea item's name to the cart array
-                    else if (cart[morningTea[i].name]) {
-                        cart[morningTea[i].name] = cart[morningTea[i].name] + Number(itemNumber[i].value);
-                        morningTeaAmount = morningTeaAmount + Number(itemNumber[i].value);
+                    if (cart[morningTea[i].name]) {
 
-                      //  for (let i = 0; i < Number(itemNumber[i].value); i++) {
-                     //       maxType.push(morningTea[i].type * Number(itemNumber[i].value));
-                    //        console.log(maxType.length);
-                     //   }
-                      
+                        if ((morningTeaAmount /* or cart */ + Number(itemNumber[i].value)) >= 3) {
+                            window.alert("You may only order 3 morning tea items!");
+                        }
 
-                    }
+                        else {
+                            cart[morningTea[i].name] = cart[morningTea[i].name] + Number(itemNumber[i].value);
+                            morningTeaAmount = morningTeaAmount + Number(itemNumber[i].value);
+                            console.log(morningTeaAmount);
+                        }
+                        
+
+                        }
+                        
+                   //     
+                        //window.alert(morningTea[i].name + " x" + itemNumber[i].value);
+
+                    
                     else {
                         cart[morningTea[i].name] = Number(itemNumber[i].value);
-                        morningTeaAmount++;     
-                      //  maxType.push(morningTea[i].type);
-                     //   maxType.push(morningTea[i].type) = Number(itemNumber[i].value);
-                    // on "add" button click it changes colour and then changes back a second later
+                        morningTeaAmount = morningTeaAmount + Number(itemNumber[i].value);
+                        console.log(morningTeaAmount);
                     }
                 }
 
@@ -456,9 +473,9 @@ placeOrder.onclick = function () {
     console.log(tutorClass.value);
     console.log(studentNumber.value);
 
-    //document.getElementById("student-form").style.display = "none";
-    //document.getElementById("body").style = "none";
-    //ddocument.getElementById("overlay").classList = "none";
+    document.getElementById("student-form").style.display = "none";
+    document.getElementById("body").style = "none";
+    document.getElementById("overlay").classList = "none";
 }
 
 // "x" button
@@ -495,7 +512,7 @@ function hideMenu() {
     Object.keys(cart).forEach(function (name, index) {
         console.log(name + " = " + this[name]);
         if (this[name] > 0)
-            displaycart[name] = new createElement("p", document.getElementById("cart-container"), "cart-item", name + " " + this[name] + " $" + this[name] * getAllItemPrice(name));
+            displaycart[name] = new createElement("p", document.getElementById("cart-container"), "cart-item", name + " x" + this[name] + " $" + this[name] * getAllItemPrice(name));
         num++;
 
 
