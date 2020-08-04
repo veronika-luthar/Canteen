@@ -19,9 +19,9 @@ function menuItems(name, price, type) {
 // function to get the price from each array
 function getPrice(array, name) {
     for (let i = 0; i < array.length; i++) {
-  //     console.log(name + " " + array[i].name + " " + array[i].price);
+       console.log(name + " " + array[i].name + " " + array[i].price);
         if (name == array[i].name) {
-  //          console.log("--");
+            console.log("--");
             return array[i].price;
             
         }
@@ -33,6 +33,7 @@ function getPrice(array, name) {
 
 // function to get the price from all arrays
 function getAllItemPrice(name) {
+    name = name.split("-")[0];
     let p0 = getPrice(morningTea, name);
     let p1 = getPrice(weekOne, name);
     let p2 = getPrice(weekTwo, name);
@@ -224,7 +225,7 @@ function displayMenu(menu, week) {
                         info[i] = new createElement("blockquote", optionsDiv[i], "options-info", sandwichOptions[i].name);
 
                         // creates a new button for each item in the array
-                        subButton[i] = new createElement("button", optionsDiv[i], "sub-buttons", "ADD", sandwichOptions[i].name);
+                        subButton[i] = new createElement("button", optionsDiv[i], "sub-buttons", "ADD", "Sandwiches");
 
                         // changes the colour of the button to yellow for 100 ticks as user feedback
                         subButton[i].onclick = function () {
@@ -232,24 +233,18 @@ function displayMenu(menu, week) {
                             sandwichDiv.style.display = "none";
                             document.getElementById("body").style = "none";
                             document.getElementById("overlay").classList = "none";
-                            console.log(sandwichOptions[i].name);
 
-//                            if (maxType.length == 3) {
-  //                              window.alert("yolo");
-    //                        }
 
-                            if (cart[sandwichOptions[i].name]) {
-                                cart[sandwichOptions[i].name]++;
-                             //   maxType.push(morningTea[i].type);
-                              //  console.log(maxType);
+                            var cartname = this.id + "-" + sandwichOptions[i].name;
+
+                            if (cart[cartname]) {
+                                cart[cartname]++;
 
 
                             }
                             else {
-                                cart[sandwichOptions[i].name] = 1;
-                            //    maxType.push(morningTea[i].type);
+                                cart[cartname] = 1;
                             }
-                            console.log(maxType);
                         }
                     }
                 }
@@ -274,7 +269,7 @@ function displayMenu(menu, week) {
 
                         info[i] = new createElement("blockquote", optionsDiv[i], "options-info", bagelOptions[i].name);
 
-                        subButton[i] = new createElement("button", optionsDiv[i], "sub-buttons", "ADD", bagelOptions[i].name);
+                        subButton[i] = new createElement("button", optionsDiv[i], "sub-buttons", "ADD", "Bagels");
 
                         subButton[i].onclick = function () {
                             
@@ -284,13 +279,16 @@ function displayMenu(menu, week) {
 
                             buttonColourChange(subButton, i, "clicked-sub-buttons", "sub-buttons");
 
-                            if (cart[bagelOptions[i].name]) {
-                                cart[bagelOptions[i].name]++;
+                            var cartname = this.id + "-" + bagelOptions[i].name;
+
+
+                            if (cart[cartname]) {
+                                cart[cartname]++;
 
 
                             }
                             else {
-                                cart[bagelOptions[i].name] = 1;
+                                cart[cartname] = 1;
                             }
                         }
                     }
