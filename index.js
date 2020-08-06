@@ -119,6 +119,9 @@ function menuButtonClick(dir) {
         document.getElementById("morning-tea").classList = "button-default";
         document.getElementById("dropdown").style.display = "block";
 
+        // displays morning tea menu until the user clicks on either "week 1" or "week 2"
+        displayMenu("morning tea");
+
         let dropdownToggle = document.getElementById("dropdown");
         dropdownToggle.onclick = function () {
             document.getElementById("dropdown").style.display = "none";
@@ -311,20 +314,19 @@ function displayMenu(menu, week) {
                   //      window.alert("You may only order 3 morning tea items!");
                 //    }
                     // pushes the morning tea item's name to the cart array
-                    if (cart[morningTea[i].name]) {
 
-                        if ((morningTeaAmount /* or cart */ + Number(itemNumber[i].value)) >= 3) {
-                            window.alert("You may only order 3 morning tea items!");
-                        }
+                    if ((morningTeaAmount /* or cart */ + Number(itemNumber[i].value)) > 3) {
+                        window.alert("You may only order 3 morning tea items!");
+                    }
 
-                        else {
-                            cart[morningTea[i].name] = cart[morningTea[i].name] + Number(itemNumber[i].value);
-                            morningTeaAmount = morningTeaAmount + Number(itemNumber[i].value);
-                            console.log(morningTeaAmount);
-                        }
-                        
+                    else if (cart[morningTea[i].name]) {
 
-                        }
+                        cart[morningTea[i].name] = cart[morningTea[i].name] + Number(itemNumber[i].value);
+                        morningTeaAmount = morningTeaAmount + Number(itemNumber[i].value);
+                        console.log(morningTeaAmount);
+                        window.alert(morningTea[i].name + " x" + itemNumber[i].value + " has been added to the cart.");
+
+                    }
                         
                    //     
                         //window.alert(morningTea[i].name + " x" + itemNumber[i].value);
@@ -334,6 +336,7 @@ function displayMenu(menu, week) {
                         cart[morningTea[i].name] = Number(itemNumber[i].value);
                         morningTeaAmount = morningTeaAmount + Number(itemNumber[i].value);
                         console.log(morningTeaAmount);
+                        window.alert(morningTea[i].name + " x" + itemNumber[i].value + " has been added to the cart.");
                     }
                 }
 
@@ -507,16 +510,52 @@ function hideMenu() {
 
 
     let num = 0;
+    let totalPrice = 0;
+
+    let cartHeader = new createElement("div", document.getElementById("cart-container"), "cart-div", "");
+
+    new createElement("p", cartHeader, "cart-header", "Item");
+    new createElement("p", cartHeader, "cart-item", "No.");
+    new createElement("p", cartHeader, "cart-item", "Price");
+
 
     displaycart = [];
     Object.keys(cart).forEach(function (name, index) {
         console.log(name + " = " + this[name]);
-        if (this[name] > 0)
-            displaycart[name] = new createElement("p", document.getElementById("cart-container"), "cart-item", name + " x" + this[name] + " $" + this[name] * getAllItemPrice(name));
+        let price = 0;
+
+        if (this[name] > 0) {
+            price = getAllItemPrice(name) * this[name];
+            totalPrice = price + totalPrice;
+
+            let cartDiv = new createElement("div", document.getElementById("cart-container"), "cart-div", "");
+            
+            displaycart[name] = new createElement("p", cartDiv, "cart-header", name);
+            new createElement("p", cartDiv, "cart-item", " x" + this[name] )
+            new createElement("p", cartDiv, "cart-item", " $" + price);
+            let test = new createElement("button", cartDiv, "minus-button", "-");
+            test.onclick = function () {
+               // console.log("bleh");
+
+                if (getPrice(morningTea, name) == -1)
+                    lunchAmount = lunchAmount - cart[name];
+
+                else
+                    morningTeaAmount = morningTeaAmount - cart[name];
+                cart[name] = cart[name] - 1;
+                hideMenu();
+
+            }
+
+        }
+
         num++;
 
-
     }, cart);
+
+    new createElement("p", document.getElementById("cart-container"), "cart-item", "Total price: $" + totalPrice);
+
+    console.log(totalPrice);
 
     if (num >= 1) {
         let checkoutButton = new createElement("button", document.getElementById("cart-container"), "checkout-button", "CHECKOUT");
