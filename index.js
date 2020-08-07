@@ -238,20 +238,26 @@ function displayMenu(menu, week) {
                             document.getElementById("body").style = "none";
                             document.getElementById("overlay").classList = "none";
 
-                            var cartname = this.id + "-" + sandwichOptions[i].name;
+                            let cartName = this.id + "-" + sandwichOptions[i].name;
 
-                            if (morningTeaAmount >= 3) {
+
+                            if ((morningTeaAmount + Number(itemNumber[i].value)) > 3) {
                                 window.alert("You may only order 3 morning tea items!");
                             }
 
-                            else if (cart[cartname]) {
-                                cart[cartname]++;
-                                morningTeaAmount++;
+                            else if (cart[cartName]) {
+
+                                cart[cartName] = cart[cartName] + Number(itemNumber[i].value);
+                                morningTeaAmount = morningTeaAmount + Number(itemNumber[i].value);
+                                window.alert(this.id + " x" + itemNumber[i].value + " has been added to the cart.");
 
                             }
+
+
                             else {
-                                cart[cartname] = 1;
-                                morningTeaAmount = 1;
+                                cart[cartName] = Number(itemNumber[i].value);
+                                morningTeaAmount = morningTeaAmount + Number(itemNumber[i].value);
+                                window.alert(this.id + " x" + itemNumber[i].value + " has been added to the cart.");
                             }
                         }
                     }
@@ -287,35 +293,36 @@ function displayMenu(menu, week) {
 
                             buttonColourChange(subButton, i, "clicked-sub-buttons", "sub-buttons");
 
-                            var cartname = this.id + "-" + bagelOptions[i].name;
+                            let cartName = this.id + "-" + bagelOptions[i].name;
 
-                            if (morningTeaAmount >= 3) {
+                            if ((morningTeaAmount + Number(itemNumber[i].value)) > 3) {
                                 window.alert("You may only order 3 morning tea items!");
+                            }
+
+                            else if (cart[cartName]) {
+
+                                cart[cartName] = cart[cartName] + Number(itemNumber[i].value);
+                                morningTeaAmount = morningTeaAmount + Number(itemNumber[i].value);
+                                window.alert(this.id + " x" + itemNumber[i].value + " has been added to the cart.");
 
                             }
 
-                            else if (cart[cartname]) {
-                                cart[cartname]++;
-                                morningTeaAmount++;
-                                
 
-                            }
                             else {
-                                cart[cartname] = 1;
-                                morningTeaAmount = 1;
+                                cart[cartName] = Number(itemNumber[i].value);
+                                morningTeaAmount = morningTeaAmount + Number(itemNumber[i].value);
+                                window.alert(this.id + " x" + itemNumber[i].value + " has been added to the cart.");
                             }
+
                         }
                     }
                 }
 
                 else {
 
-                //    if (morningTeaAmount >= 3) {
-                  //      window.alert("You may only order 3 morning tea items!");
-                //    }
                     // pushes the morning tea item's name to the cart array
 
-                    if ((morningTeaAmount /* or cart */ + Number(itemNumber[i].value)) > 3) {
+                    if ((morningTeaAmount + Number(itemNumber[i].value)) > 3) {
                         window.alert("You may only order 3 morning tea items!");
                     }
 
@@ -323,19 +330,14 @@ function displayMenu(menu, week) {
 
                         cart[morningTea[i].name] = cart[morningTea[i].name] + Number(itemNumber[i].value);
                         morningTeaAmount = morningTeaAmount + Number(itemNumber[i].value);
-                        console.log(morningTeaAmount);
                         window.alert(morningTea[i].name + " x" + itemNumber[i].value + " has been added to the cart.");
 
                     }
                         
-                   //     
-                        //window.alert(morningTea[i].name + " x" + itemNumber[i].value);
-
                     
                     else {
                         cart[morningTea[i].name] = Number(itemNumber[i].value);
                         morningTeaAmount = morningTeaAmount + Number(itemNumber[i].value);
-                        console.log(morningTeaAmount);
                         window.alert(morningTea[i].name + " x" + itemNumber[i].value + " has been added to the cart.");
                     }
                 }
@@ -427,7 +429,6 @@ function displayMenu(menu, week) {
 
             newButton[day].onclick = function () {
 
-              //  mennyi cucc van mar ? sok ? alert nem vehetsz tobbet
                 buttonColourChange(newButton, day, "clicked-buttons", "buttons");
 
                 if (lunchAmount == 1) {
