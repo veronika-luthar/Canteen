@@ -11,6 +11,7 @@
     padding: 0;
 }
 
+/* background image */
 .background-image {
     position: absolute;
     width: 100%;
@@ -20,6 +21,7 @@
     position: fixed;
 }
 
+/* week 1 and 2 in dropdown */
 .week {
     background-color: white;
     border: none;
@@ -34,25 +36,17 @@
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
 }
 
-
+/* dropdown */
 .dropdown-content {
     position: relative;
     display: none;
-    left: 33.6%;
+    left: 35.2%;
     top: 50px;
     height: 25%;
     
 }
 
-
-.show {
-    display: block;
-}
-
-.hide {
-    display: none;
-}
-
+/* block holding buttons */
 .button-block {
     top: 50vh;
     background: #00583D;
@@ -61,6 +55,7 @@
     width: 100%;
 }
 
+/* button default display */
 .button-default {
     background-color: transparent;
     color: #FFFFFF;
@@ -76,6 +71,7 @@
     top: 50px;
 }
 
+/* button being currently displayed */
 .button-current {
     background-color: #FFD614;
     border: none;
@@ -89,19 +85,20 @@
     top: 50px;
 }
 
+/* lunch button positioning */
 #lunch {
     left: 10%;
     position: relative;
 }
 
+/* morning tea button positioning */
 #morning-tea {
     left: 10%;
     position: relative;
 }
 
-
+/* container for menu items */
 .container {
-
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -121,6 +118,7 @@
         width: 400px;
     }
 
+/* item div */
 .item {
     background-color: #fff;
     color: #00583D;
@@ -132,6 +130,7 @@
     font-weight: normal;
 }
 
+/* "ADD" button default*/
 .buttons {
     top: 75vh;
     background-color: #00583D;
@@ -145,6 +144,7 @@
     transform: translateY(650%) translateX(70%);
 }
 
+/* "ADD" button when it has been clicked */
 .clicked-buttons {
     top: 75vh;
     background-color: #FFD614;
@@ -158,6 +158,7 @@
     transform: translateY(650%) translateX(70%);
 }
 
+/* number of items to be added into the cart */
 .input {
     background: #cfcfcf;
     width: 125px;
@@ -169,21 +170,15 @@
     color: #00583D;
     text-align: center;
     resize: none;
-
 }
 
-.item-number {
-    background: #E4E4E4;
-    width: 125px;
-    height: 50px;
-    transform: translateY(450%) translateX(25%);
-}
-
+/* item info */
 .info {
     text-transform: uppercase;
 }
 
 
+/* header*/
 .header {
     position: absolute;
     width: 100%;
@@ -193,6 +188,7 @@
     z-index: -1;
 }
 
+/* white separator between header and page */
 .separator {
     position: absolute;
     width: 100%;
@@ -202,7 +198,7 @@
     z-index: -1;
 }
 
-
+/* gray overlay */
 .overlay {
     width: 100vw;
     height: 500vh;
@@ -212,6 +208,7 @@
     overflow-y: hidden;
 }
 
+/* "ORDER ONLINE" positioning */
 #text-container {
     position: absolute;
     width: 100%;
@@ -219,6 +216,7 @@
     z-index: -1;
 }
 
+/* bayfield logo */
 #logo {
     position: absolute;
     width: 15%;
@@ -228,6 +226,7 @@
     z-index: -1;
 }
 
+/* menu div */
 .menu {
     position: absolute;
     width: 100%;
@@ -237,6 +236,7 @@
     z-index: -1;
 }
 
+/* "ORDER ONLINE" text */
 .order-text {
     position: absolute;
     width: max-content;
@@ -252,7 +252,7 @@
     text-align: center;
 }
 
-
+/* cart button */
 .cart {
     position: absolute;
     width: 50px;
@@ -269,6 +269,7 @@
 
 /* cart page */
 
+/* container to hold cart elements */
 .cart-container {
     background-color: white;
     top: 50%;
@@ -283,6 +284,7 @@
 
 }
 
+/* div to contain cart item elements */
 .cart-div {
     display: flex;
     justify-content: space-between;
@@ -291,6 +293,7 @@
     margin: 5px 0px;
 }
 
+/* items in the cart */
 .cart-item {
     font-size: 36px;
     transform: translateY(5%) translateX(15%);
@@ -300,14 +303,27 @@
 
 }
 
+/* "item" "no." and "price" */
 .cart-header {
     font-size: 36px;
     transform: translateY(5%) translateX(15%);
     width: 50%;
-    text-align: left;
+    text-align: center;
     position: relative;
+    font-weight: bold;
 }
 
+/* total price */
+.cart-total-price {
+    font-size: 36px;
+    transform: translateY(5%) translateX(15%);
+    width: 50%;
+    text-align: center;
+    position: relative;
+    font-weight: bold;
+    left: 17.75%;
+}
+/* button to remove items */
 .minus-button {
     position: relative;
     background-color: #00583D;
@@ -319,6 +335,7 @@
     border: none;
 }
 
+/* back button */
 .back-button {
     background-color: #00583D;
     color: #fff;
@@ -331,6 +348,7 @@
     margin: 10px;
 }
 
+/* checkout button */
 .checkout-button {
     background-color: #00583D;
     color: #fff;
@@ -346,6 +364,7 @@
     transform: translateX(-50%);
 }
 
+/* no items in cart text */
 .no-items {
     font-size: 3rem;
     font-weight: 800;
@@ -356,6 +375,7 @@
 
 /* checkout */
 
+/* div to hold elements in */
 .student-form {
     background-color: white;
     top: 25%;
@@ -371,7 +391,9 @@
     align-items: center;
 }
 
-.student-name {
+
+/* student name, number and tutor class input */
+.student-input {
     background: #E4E4E4;
     width: 80%;
     height: 50px;
@@ -383,30 +405,7 @@
     margin: 20px;
 }
 
-.tutor-class {
-    background: #E4E4E4;
-    width: 80%;
-    height: 50px;
-    border: none;
-    font-size: 36px;
-    font-family: inherit;
-    color: rgba(0, 0, 0, 0.6);
-    resize: none;
-    margin: 20px;
-}
-
-.student-number {
-    background: #E4E4E4;
-    width: 80%;
-    height: 50px;
-    border: none;
-    font-size: 36px;
-    font-family: inherit;
-    color: rgba(0, 0, 0, 0.6);
-    resize: none;
-    margin: 20px;
-}
-
+/* x button */
 .x-button {
     width: 50px;
     height: 50px;
@@ -418,7 +417,8 @@
     right: 10px;
     top: 10px;
 }
-
+ 
+/* place order button*/
 .place-order-button {
     background-color: #00583D;
     color: #fff;
@@ -432,12 +432,14 @@
     margin: 10px;
 }
 
+/* bagel and sandwich options info*/
 .options-info {
     text-transform: uppercase;
     width: 50%;
     word-break: break-word;
 }
 
+/* main div which contains the sub options */
 .sub-options {
     background-color: white;
     top: 25%;
@@ -451,6 +453,7 @@
     text-align: left;
 }
 
+/* div for each option */
 .sub-options-div {
     display: flex;
     justify-content: space-between;
@@ -459,6 +462,7 @@
     margin:  5px 0px; 
 }
 
+/* button for options */
 .sub-buttons {
     top: 75vh;
     background-color: #00583D;
@@ -473,15 +477,4 @@
     z-index: +1;
 }
 
-.clicked-sub-buttons {
-    top: 75vh;
-    background-color: #FFD614;
-    color: #00583D;
-    width: 200px;
-    height: 50px;
-    border: none;
-    text-align: center;
-    font-size: 24px;
-    font-weight: 800;
-}
 

@@ -236,9 +236,7 @@ function displayMenu(menu, week) {
                         // creates a new button for each item in the array
                         subButton[i] = new createElement("button", optionsDiv[i], "sub-buttons", "ADD", "Sandwiches");
 
-                        // changes the colour of the button to yellow for 100 ticks as user feedback
                         subButton[i].onclick = function () {
-                            buttonColourChange(subButton, i, "clicked-sub-buttons", "sub-buttons");
 
                             // resets page to previous look
                             sandwichDiv.style.display = "none";
@@ -303,7 +301,6 @@ function displayMenu(menu, week) {
                             document.getElementById("body").style = "none";
                             document.getElementById("overlay").classList = "none";
 
-                            buttonColourChange(subButton, i, "clicked-sub-buttons", "sub-buttons");
 
                             // assigns the variable cartName to the item name and the sub-option
                             let cartName = this.id + "-" + bagelOptions[i].name;
@@ -479,6 +476,8 @@ function hideMenu() {
     // removes everything previously in the cart (so there is no repetition of elements)
     document.getElementById("cart-container").innerHTML = "";
 
+
+
     // changes "ORDER ONLINE" text to "CART"
     document.getElementById("order-online").innerHTML = "CART";
 
@@ -512,9 +511,9 @@ function hideMenu() {
     // displays "item"
     let itemTag = new createElement("p", cartHeader, "cart-header", "Item");
     // displays "no."
-    let noTag = new createElement("p", cartHeader, "cart-item", "No.");
+    let noTag = new createElement("p", cartHeader, "cart-header", "No.");
     // displays "price"
-    let priceTag = new createElement("p", cartHeader, "cart-item", "Price");
+    let priceTag = new createElement("p", cartHeader, "cart-header", "Price");
 
     // array used to display the cart items
     let displayCart = [];
@@ -536,7 +535,7 @@ function hideMenu() {
             let cartDiv = new createElement("div", document.getElementById("cart-container"), "cart-div", "");
 
             // displays item name
-            displayCart[name] = new createElement("p", cartDiv, "cart-header", name);
+            displayCart[name] = new createElement("p", cartDiv, "cart-item", name);
             // displays item number
             new createElement("p", cartDiv, "cart-item", " x" + this[name])
             // displays item price
@@ -574,7 +573,7 @@ function hideMenu() {
     }, cart);
 
     // displays total price
-    let totalPriceTag = new createElement("p", document.getElementById("cart-container"), "cart-item", "Total price: $" + totalPrice);
+    let totalPriceTag = new createElement("p", document.getElementById("cart-container"), "cart-total-price", "Total price: $" + totalPrice);
 
     // checks if there are 1 or more items in the cart
     if (num >= 1) {
@@ -605,20 +604,19 @@ function hideMenu() {
     }
 }
 
-
 // student name input field
-let studentName = new createElement("input", document.getElementById("student-form"), "student-name", "Student Name");
+let studentName = new createElement("input", document.getElementById("student-form"), "student-input", "Student Name");
 studentName.setAttribute("type", "text");
 studentName.setAttribute("placeholder", "Student Name");
 
 // tutor class input field
-let tutorClass = new createElement("input", document.getElementById("student-form"), "tutor-class", "Tutor Class");
+let tutorClass = new createElement("input", document.getElementById("student-form"), "student-input", "Tutor Class");
 tutorClass.setAttribute("type", "text");
 tutorClass.setAttribute("placeholder", "Tutor Class");
 tutorClass.setAttribute("maxlength", 3);
 
 // student number input field
-let studentNumber = new createElement("input", document.getElementById("student-form"), "student-number", "Student Number");
+let studentNumber = new createElement("input", document.getElementById("student-form"), "student-input", "Student Number");
 studentNumber.setAttribute("type", "text");
 studentNumber.setAttribute("placeholder", "Student Number");
 studentNumber.setAttribute("maxlength", 5);
@@ -627,6 +625,11 @@ studentNumber.setAttribute("maxlength", 5);
 let placeOrder = new createElement("button", document.getElementById("student-form"), "place-order-button", "Place Order");
 placeOrder.onclick = function () {
 
+    if (studentNumber.value == 0 || studentName.value == 0 || tutorClass.value == 0) {
+        window.alert("Text fields are empty!");
+    }
+
+    else {
     // logs all the inputs
     console.log(studentName.value);
     console.log(tutorClass.value);
@@ -639,4 +642,5 @@ placeOrder.onclick = function () {
 
     // alerts user that their order has been placed
     window.alert(studentName.value + ", your order has been placed! Please pick up your items at 1:00pm.");
+    }
 }
