@@ -19,20 +19,19 @@ function menuItems(name, price, type) {
 // function to get the price from each array
 function getPrice(array, name) {
     for (let i = 0; i < array.length; i++) {
-       console.log(name + " " + array[i].name + " " + array[i].price);
-        if (name == array[i].name) {
-            console.log("--");
-            return array[i].price;
-            
-        }
-        
-    }
 
+        // if name of item in cart is the same as one in the array, return the price
+        if (name == array[i].name) {
+            return array[i].price;
+        }
+    }
     return -1;
 }
 
 // function to get the price from all arrays
 function getAllItemPrice(name) {
+
+    // bagel and sandwich option outputs
     name = name.split("-")[0];
     let p0 = getPrice(morningTea, name);
     let p1 = getPrice(weekOne, name);
@@ -41,7 +40,6 @@ function getAllItemPrice(name) {
         return p0;
     }
     else if (p1 >= 0) {
-        console.log("p1");
         return p1;
 
     }
@@ -63,7 +61,7 @@ morningTea.push(new menuItems("Cheese Pulls", 3, "Morning Tea"));
 morningTea.push(new menuItems("Sandwiches", 4, "Morning Tea"));
 morningTea.push(new menuItems("Bagels", 4, "Morning Tea"));
 
-// sandwich sub options 
+// sandwich sub-options 
 let sandwichOptions = [];
 
 sandwichOptions.push(new menuItems("Beef, cheese, lettuce and onion", 4, "Morning Tea"));
@@ -72,7 +70,7 @@ sandwichOptions.push(new menuItems("Bacon, lettuce and tomato", 4 , "Morning Tea
 sandwichOptions.push(new menuItems("Vegetarian (egg, tomato, alfa sprouts, cucumber and mustard)", 4, "Morning Tea"));
 sandwichOptions.push(new menuItems("Chicken, creamy cheese, salad and apricot", 4, "Morning Tea"));
 
-// bagel sub options
+// bagel sub-options
 let bagelOptions = [];
 
 bagelOptions.push(new menuItems("Smoked salmon, creamy cheese, alfa sprouts and tomato relish", 4, "Morning Tea"));
@@ -99,9 +97,9 @@ weekTwo.push(new menuItems("Chicken or beef burgers with tomato relish and chees
 // cart array
 let cart = [];
 
+// morning tea and lunch item amounts
 let morningTeaAmount = 0;
 let lunchAmount = 0;
-let test = [];
 
 // displays the morning tea menu as default
 displayMenu("morning tea");
@@ -113,8 +111,10 @@ document.getElementById("student-form").style.display = "none";
 // on button click changes the buttons' styling and menu
 function menuButtonClick(dir) {
     if (dir === 1) {
-
+        // runs the dropdown function
         dropdown();
+
+        // changes lunch button colour to the current and the morning tea to the default
         document.getElementById("lunch").classList = "button-current";
         document.getElementById("morning-tea").classList = "button-default";
         document.getElementById("dropdown").style.display = "block";
@@ -122,6 +122,7 @@ function menuButtonClick(dir) {
         // displays morning tea menu until the user clicks on either "week 1" or "week 2"
         displayMenu("morning tea");
 
+        // when week 1 or week 2 is clicked, the dropdown will be hidden
         let dropdownToggle = document.getElementById("dropdown");
         dropdownToggle.onclick = function () {
             document.getElementById("dropdown").style.display = "none";
@@ -129,6 +130,8 @@ function menuButtonClick(dir) {
 
     }
     else {
+
+        // changes lunch button colour to the default and the morning tea to the current
         document.getElementById("morning-tea").classList = "button-current";
         document.getElementById("lunch").classList = "button-default";
         displayMenu("morning tea");
@@ -156,8 +159,8 @@ function createElement(type, obj, name, text, aid ) {
     return obj.appendChild(array);
 }
 
-// x button
 
+// creates "x" button which is used throughout the website
 function xButtonCreate(form) {
 let xButton = new createElement("button", form, "x-button", "X");
 xButton.onclick = function () {
@@ -181,6 +184,7 @@ function displayMenu(menu, week) {
     // clears "container" contents
     document.getElementById("container").innerHTML = "";
 
+    // checks if the morning tea button is clicked
     if (menu === "morning tea") {
         for (let i = 0; i < morningTea.length; i++) {
 
@@ -218,6 +222,7 @@ function displayMenu(menu, week) {
                     // creates a "div" to hold all the elements in
                     let sandwichDiv = new createElement("div", document.getElementById("body"), "sub-options", "");
 
+                    // creates "x" button
                     xButtonCreate(sandwichDiv);
 
                     for (let i = 0; i < sandwichOptions.length; i++) {
@@ -234,17 +239,21 @@ function displayMenu(menu, week) {
                         // changes the colour of the button to yellow for 100 ticks as user feedback
                         subButton[i].onclick = function () {
                             buttonColourChange(subButton, i, "clicked-sub-buttons", "sub-buttons");
+
+                            // resets page to previous look
                             sandwichDiv.style.display = "none";
                             document.getElementById("body").style = "none";
                             document.getElementById("overlay").classList = "none";
 
+                            // assigns the variable cartName to the item name and the sub-option
                             let cartName = this.id + "-" + sandwichOptions[i].name;
 
-
+                            // checks if the item amount the user wants to add exceeds 3
                             if ((morningTeaAmount + Number(itemNumber[i].value)) > 3) {
                                 window.alert("You may only order 3 morning tea items!");
                             }
 
+                            // if the item is already in the cart array it adds one onto it
                             else if (cart[cartName]) {
 
                                 cart[cartName] = cart[cartName] + Number(itemNumber[i].value);
@@ -253,7 +262,7 @@ function displayMenu(menu, week) {
 
                             }
 
-
+                            // if the item is not in the cart array, it adds it
                             else {
                                 cart[cartName] = Number(itemNumber[i].value);
                                 morningTeaAmount = morningTeaAmount + Number(itemNumber[i].value);
@@ -281,69 +290,69 @@ function displayMenu(menu, week) {
                         // creates a div, blockquote and button for each item in the array
                         optionsDiv[i] = new createElement("div", bagelDiv, "sub-options-div", "");
 
+                        // displays the options
                         info[i] = new createElement("blockquote", optionsDiv[i], "options-info", bagelOptions[i].name);
 
+                        // creates a new button for each item in the array
                         subButton[i] = new createElement("button", optionsDiv[i], "sub-buttons", "ADD", "Bagels");
 
                         subButton[i].onclick = function () {
-                            
+
+                            // resets page to previous look
                             bagelDiv.style.display = "none";
                             document.getElementById("body").style = "none";
                             document.getElementById("overlay").classList = "none";
 
                             buttonColourChange(subButton, i, "clicked-sub-buttons", "sub-buttons");
 
+                            // assigns the variable cartName to the item name and the sub-option
                             let cartName = this.id + "-" + bagelOptions[i].name;
 
+                            // checks if the item amount the user wants to add exceeds 3
                             if ((morningTeaAmount + Number(itemNumber[i].value)) > 3) {
                                 window.alert("You may only order 3 morning tea items!");
                             }
 
+                            // if the item is already in the cart array it adds one onto it
                             else if (cart[cartName]) {
-
                                 cart[cartName] = cart[cartName] + Number(itemNumber[i].value);
                                 morningTeaAmount = morningTeaAmount + Number(itemNumber[i].value);
                                 window.alert(this.id + " x" + itemNumber[i].value + " has been added to the cart.");
-
                             }
 
-
+                            // if the item is not in the cart array, it adds it
                             else {
                                 cart[cartName] = Number(itemNumber[i].value);
                                 morningTeaAmount = morningTeaAmount + Number(itemNumber[i].value);
                                 window.alert(this.id + " x" + itemNumber[i].value + " has been added to the cart.");
                             }
-
                         }
                     }
                 }
 
                 else {
 
-                    // pushes the morning tea item's name to the cart array
-
+                    // checks if the item amount the user wants to add exceeds 3
                     if ((morningTeaAmount + Number(itemNumber[i].value)) > 3) {
                         window.alert("You may only order 3 morning tea items!");
                     }
 
+                    // if the item is already in the cart array it adds one onto it
                     else if (cart[morningTea[i].name]) {
 
                         cart[morningTea[i].name] = cart[morningTea[i].name] + Number(itemNumber[i].value);
                         morningTeaAmount = morningTeaAmount + Number(itemNumber[i].value);
                         window.alert(morningTea[i].name + " x" + itemNumber[i].value + " has been added to the cart.");
-
                     }
-                        
-                    
+                
+                    // if the item is not in the cart array, it adds it
                     else {
                         cart[morningTea[i].name] = Number(itemNumber[i].value);
                         morningTeaAmount = morningTeaAmount + Number(itemNumber[i].value);
                         window.alert(morningTea[i].name + " x" + itemNumber[i].value + " has been added to the cart.");
                     }
                 }
-
-
-            };
+            }
         }
     }
 
@@ -381,7 +390,7 @@ function displayMenu(menu, week) {
                 break;
         }
 
-        // displays week 1 lunch menu
+        // displays week 1 lunch menu, same way as morning tea menu
         if (week === 1) {
 
             newDiv[day] = new createElement("div", document.getElementById("container"), "item", "");
@@ -398,6 +407,7 @@ function displayMenu(menu, week) {
 
                 buttonColourChange(newButton, day, "clicked-buttons", "buttons");
 
+                // checks if lunch amount is 1
                 if (lunchAmount == 1) {
                     window.alert("You may only order 1 lunch item!");
                 }
@@ -413,10 +423,10 @@ function displayMenu(menu, week) {
                     lunchAmount++;
                     window.alert(weekOne[day].name + " x" + itemNumber[day].value + " has been added to the cart.");
                 }
-            };
+            }
         }
 
-        // displays week 2 lunch menu
+        // displays week 2 lunch menu, same way as morning tea menu
         else {
 
             newDiv[day] = new createElement("div", document.getElementById("container"), "item", "");
@@ -433,6 +443,7 @@ function displayMenu(menu, week) {
 
                 buttonColourChange(newButton, day, "clicked-buttons", "buttons");
 
+                // checks if lunch amount is 1
                 if (lunchAmount == 1) {
                     window.alert("You may only order 1 lunch item!");
                 }
@@ -441,20 +452,158 @@ function displayMenu(menu, week) {
                     cart[weekTwo[day].name] = cart[weekTwo[day].name] + Number(itemNumber[day].value);
                     lunchAmount = lunchAmount + Number(itemNumber[day].value);
                     window.alert(weekTwo[day].name + " x" + itemNumber[day].value + " has been added to the cart.");
-
                 }
+
                 else {
                     cart[weekTwo[day].name] = Number(itemNumber[day].value);
                     lunchAmount++;
                     window.alert(weekTwo[day].name + " x" + itemNumber[day].value + " has been added to the cart.");
                 }
-            };
-   
+            }
         }
     }
 }
 
-// checkout form inputs
+// "x" button
+xButtonCreate(document.getElementById("student-form"));
+
+// display cart & hide menu
+function hideMenu() {
+
+    // hides the elements of the menu
+    document.getElementById("container").style.display = "none";
+    document.getElementById("button-block").style.display = "none";
+    document.getElementById("lunch").style.display = "none";
+    document.getElementById("morning-tea").style.display = "none";
+
+    // removes everything previously in the cart (so there is no repetition of elements)
+    document.getElementById("cart-container").innerHTML = "";
+
+    // changes "ORDER ONLINE" text to "CART"
+    document.getElementById("order-online").innerHTML = "CART";
+
+    // displays the cart container
+    document.getElementById("cart-container").style.display = "block";
+
+    let backButton = new createElement("button", document.getElementById("cart-container"), "back-button", "BACK");
+
+    backButton.onclick = function () {
+
+        // hides cart page and shows menu page
+        document.getElementById("container").style.display = "flex";
+        document.getElementById("button-block").style.display = "block";
+        document.getElementById("lunch").style.display = "";
+        document.getElementById("morning-tea").style.display = "";
+
+        // resets the text to "ORDER ONLINE"
+        document.getElementById("order-online").innerHTML = "ORDER ONLINE";
+
+        // hides the cart container
+        document.getElementById("cart-container").style.display = "none";
+    }
+
+    // declares num and total price variables
+    let num = 0;
+    let totalPrice = 0;
+
+    // creates the header in which itemTag, noTag and priceTag will go in
+    let cartHeader = new createElement("div", document.getElementById("cart-container"), "cart-div", "");
+
+    // displays "item"
+    let itemTag = new createElement("p", cartHeader, "cart-header", "Item");
+    // displays "no."
+    let noTag = new createElement("p", cartHeader, "cart-item", "No.");
+    // displays "price"
+    let priceTag = new createElement("p", cartHeader, "cart-item", "Price");
+
+    // array used to display the cart items
+    let displayCart = [];
+
+    Object.keys(cart).forEach(function (name) {
+        console.log(name + " = " + this[name]);
+        let price = 0;
+
+        // checks if there are any items in the cart
+        if (this[name] > 0) {
+
+            // gets the price of all the item
+            price = getAllItemPrice(name) * this[name];
+
+            // adds the price onto the total price
+            totalPrice = price + totalPrice;
+
+            // creates a div to hold the cart elements in
+            let cartDiv = new createElement("div", document.getElementById("cart-container"), "cart-div", "");
+
+            // displays item name
+            displayCart[name] = new createElement("p", cartDiv, "cart-header", name);
+            // displays item number
+            new createElement("p", cartDiv, "cart-item", " x" + this[name])
+            // displays item price
+            new createElement("p", cartDiv, "cart-item", " $" + price);
+
+            // creates button to remove item/s
+            let minusButton = new createElement("button", cartDiv, "minus-button", "-");
+            minusButton.onclick = function () {
+
+                window.alert("You have removed an item");
+
+                // if the item is a lunch item it takes 1 off the lunchAmount
+                if (getPrice(morningTea, name) == -1) {
+                    lunchAmount = lunchAmount - cart[name];
+                }
+
+                // if the item is a morning tea item it takes 1 off the morningTeaAmount
+                else {
+                    morningTeaAmount = morningTeaAmount - cart[name];
+                }
+
+                // removes one of the items
+                cart[name] = cart[name] - 1;
+
+                // runs the hideMenu function to update the page
+                hideMenu();
+
+            }
+
+        }
+
+        // adds onto the num variable
+        num++;
+
+    }, cart);
+
+    // displays total price
+    let totalPriceTag = new createElement("p", document.getElementById("cart-container"), "cart-item", "Total price: $" + totalPrice);
+
+    // checks if there are 1 or more items in the cart
+    if (num >= 1) {
+
+        // creates the checkout button
+        let checkoutButton = new createElement("button", document.getElementById("cart-container"), "checkout-button", "CHECKOUT");
+
+        // displays the student form div, grays out the background and removes overflow
+        checkoutButton.onclick = function () {
+            document.getElementById("overlay").classList = "overlay";
+            document.getElementById("body").style = "overflow: hidden";
+            document.getElementById("student-form").style.display = "flex";
+  
+        }
+    }
+
+    // if there are no items in the cart
+    else {
+
+        // hides all these attributes
+        totalPriceTag.style.display = "none";
+        priceTag.style.display = "none";
+        noTag.style.display = "none";
+        itemTag.style.display = "none";
+
+        // displays "no items in cart"
+        new createElement("p", document.getElementById("cart-container"), "no-items", "NO ITEMS IN CART");
+    }
+}
 
 
 // student name input field
@@ -477,110 +626,17 @@ studentNumber.setAttribute("maxlength", 5);
 // "place order" button
 let placeOrder = new createElement("button", document.getElementById("student-form"), "place-order-button", "Place Order");
 placeOrder.onclick = function () {
+
+    // logs all the inputs
     console.log(studentName.value);
     console.log(tutorClass.value);
     console.log(studentNumber.value);
 
+    // hides the form
     document.getElementById("student-form").style.display = "none";
     document.getElementById("body").style = "none";
     document.getElementById("overlay").classList = "none";
+
+    // alerts user that their order has been placed
+    window.alert(studentName.value + ", your order has been placed! Please pick up your items at 1:00pm.");
 }
-
-// "x" button
-xButtonCreate(document.getElementById("student-form"));
-
-// display cart & hide menu
-function hideMenu() {
-    document.getElementById("container").style.display = "none";
-    document.getElementById("button-block").style.display = "none";
-    document.getElementById("lunch").style.display = "none";
-    document.getElementById("morning-tea").style.display = "none";
-
-    document.getElementById("cart-container").innerHTML = "";
-
-    document.getElementById("order-online").innerHTML = "CART";
-    document.getElementById("cart-container").style.display = "block";
-
-    let backButton = new createElement("button", document.getElementById("cart-container"), "back-button", "BACK");
-
-    backButton.onclick = function () {
-        document.getElementById("container").style.display = "flex";
-        document.getElementById("button-block").style.display = "block";
-        document.getElementById("lunch").style.display = "";
-        document.getElementById("morning-tea").style.display = "";
-
-        document.getElementById("order-online").innerHTML = "ORDER ONLINE";
-        document.getElementById("cart-container").style.display = "none";
-    }
-
-
-    let num = 0;
-    let totalPrice = 0;
-
-    let cartHeader = new createElement("div", document.getElementById("cart-container"), "cart-div", "");
-
-    let itemTag = new createElement("p", cartHeader, "cart-header", "Item");
-    let noTag = new createElement("p", cartHeader, "cart-item", "No.");
-    let priceTag = new createElement("p", cartHeader, "cart-item", "Price");
-    
-
-
-    displaycart = [];
-    Object.keys(cart).forEach(function (name, index) {
-        console.log(name + " = " + this[name]);
-        let price = 0;
-
-        if (this[name] > 0) {
-            price = getAllItemPrice(name) * this[name];
-            totalPrice = price + totalPrice;
-
-            let cartDiv = new createElement("div", document.getElementById("cart-container"), "cart-div", "");
-            
-            displaycart[name] = new createElement("p", cartDiv, "cart-header", name);
-            new createElement("p", cartDiv, "cart-item", " x" + this[name] )
-            new createElement("p", cartDiv, "cart-item", " $" + price);
-            let test = new createElement("button", cartDiv, "minus-button", "-");
-            test.onclick = function () {
-               // console.log("bleh");
-
-                if (getPrice(morningTea, name) == -1)
-                    lunchAmount = lunchAmount - cart[name];
-
-                else
-                    morningTeaAmount = morningTeaAmount - cart[name];
-                cart[name] = cart[name] - 1;
-                hideMenu();
-
-            }
-
-        }
-
-        num++;
-
-    }, cart);
-
-    let totalPriceTag = new createElement("p", document.getElementById("cart-container"), "cart-item", "Total price: $" + totalPrice);
-
-    console.log(totalPrice);
-
-    if (num >= 1) {
-        let checkoutButton = new createElement("button", document.getElementById("cart-container"), "checkout-button", "CHECKOUT");
-
-        checkoutButton.onclick = function () {
-            document.getElementById("overlay").classList = "overlay";
-            document.getElementById("body").style = "overflow: hidden";
-            document.getElementById("student-form").style.display = "flex";
-  
-        }
-    }
-
-    else {
-        totalPriceTag.style.display = "none";
-        priceTag.style.display = "none";
-        noTag.style.display = "none";
-        itemTag.style.display = "none";
-        
-        new createElement("p", document.getElementById("cart-container"), "no-items", "NO ITEMS IN CART");
-    }
-}
-
