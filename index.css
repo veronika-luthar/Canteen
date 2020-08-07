@@ -28,9 +28,10 @@
     font-size: 36px;
     font-weight: 800;
     height: 109px;
-    width: 232.5px;
+    width: 232.7px;
     display: block;
     left: 23%;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
 }
 
 
@@ -38,8 +39,9 @@
     position: relative;
     display: none;
     left: 33.6%;
-    top: 75px;
+    top: 50px;
     height: 25%;
+    
 }
 
 
@@ -71,7 +73,7 @@
     font-weight: 800;
     height: 109px;
     text-decoration: underline;
-    top: 75px;
+    top: 50px;
 }
 
 .button-current {
@@ -84,7 +86,7 @@
     border-left: solid 45px #FFD614;
     border-right: solid 45px #FFD614;
     height: 109px;
-    top: 75px;
+    top: 50px;
 }
 
 #lunch {
