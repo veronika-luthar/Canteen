@@ -397,7 +397,7 @@ function displayMenu(menu, week) {
             newButton[day].onclick = function () {
 
                 buttonColourChange(newButton, day, "clicked-buttons", "buttons");
-                //   cart.push(weekOne[i]);
+
                 if (lunchAmount == 1) {
                     window.alert("You may only order 1 lunch item!");
                 }
@@ -405,11 +405,13 @@ function displayMenu(menu, week) {
                 else if (cart[weekOne[day].name]) {
                     cart[weekOne[day].name] = cart[weekOne[day].name] + Number(itemNumber[day].value);
                     lunchAmount = lunchAmount + Number(itemNumber[day].value);
+                    window.alert(weekOne[day].name + " x" + itemNumber[day].value + " has been added to the cart.");
 
                 }
                 else {
                     cart[weekOne[day].name] = Number(itemNumber[day].value);
                     lunchAmount++;
+                    window.alert(weekOne[day].name + " x" + itemNumber[day].value + " has been added to the cart.");
                 }
             };
         }
@@ -438,11 +440,13 @@ function displayMenu(menu, week) {
                 else if (cart[weekTwo[day].name]) {
                     cart[weekTwo[day].name] = cart[weekTwo[day].name] + Number(itemNumber[day].value);
                     lunchAmount = lunchAmount + Number(itemNumber[day].value);
+                    window.alert(weekTwo[day].name + " x" + itemNumber[day].value + " has been added to the cart.");
 
                 }
                 else {
                     cart[weekTwo[day].name] = Number(itemNumber[day].value);
                     lunchAmount++;
+                    window.alert(weekTwo[day].name + " x" + itemNumber[day].value + " has been added to the cart.");
                 }
             };
    
@@ -515,9 +519,10 @@ function hideMenu() {
 
     let cartHeader = new createElement("div", document.getElementById("cart-container"), "cart-div", "");
 
-    new createElement("p", cartHeader, "cart-header", "Item");
-    new createElement("p", cartHeader, "cart-item", "No.");
-    new createElement("p", cartHeader, "cart-item", "Price");
+    let itemTag = new createElement("p", cartHeader, "cart-header", "Item");
+    let noTag = new createElement("p", cartHeader, "cart-item", "No.");
+    let priceTag = new createElement("p", cartHeader, "cart-item", "Price");
+    
 
 
     displaycart = [];
@@ -554,7 +559,7 @@ function hideMenu() {
 
     }, cart);
 
-    new createElement("p", document.getElementById("cart-container"), "cart-item", "Total price: $" + totalPrice);
+    let totalPriceTag = new createElement("p", document.getElementById("cart-container"), "cart-item", "Total price: $" + totalPrice);
 
     console.log(totalPrice);
 
@@ -570,6 +575,11 @@ function hideMenu() {
     }
 
     else {
+        totalPriceTag.style.display = "none";
+        priceTag.style.display = "none";
+        noTag.style.display = "none";
+        itemTag.style.display = "none";
+        
         new createElement("p", document.getElementById("cart-container"), "no-items", "NO ITEMS IN CART");
     }
 }
