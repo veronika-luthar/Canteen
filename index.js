@@ -8,6 +8,13 @@ let itemNumber = [];
 let optionsDiv = [];
 let subButton = [];
 
+const itemMin = 1;
+const morningTeaMax = 3;
+const lunchMax = 1;
+
+const tutorClassMaxLength = 3;
+const studentNumberMaxLength = 5;
+
 
 // function to create menu items and put them in an array
 function menuItems(name, price, type) {
@@ -198,8 +205,8 @@ function displayMenu(menu, week) {
             // creates a text input where you can choose the amount you would like to put in the cart. min set at 1, max set at 3
             itemNumber[i] = new createElement("input", newDiv[i], "input", "1");
             itemNumber[i].setAttribute("type", "number");
-            itemNumber[i].setAttribute("min", "1");
-            itemNumber[i].setAttribute("max", "3");
+            itemNumber[i].setAttribute("min", itemMin);
+            itemNumber[i].setAttribute("max", morningTeaMax);
             itemNumber[i].setAttribute("onkeydown", "return false;")
             itemNumber[i].value = 1;
             
@@ -394,8 +401,8 @@ function displayMenu(menu, week) {
             newButton[day] = new createElement("button", newDiv[day], "buttons", "ADD");
             itemNumber[day] = new createElement("input", newDiv[day], "input", "1");
             itemNumber[day].setAttribute("type", "number");
-            itemNumber[day].setAttribute("min", "1");
-            itemNumber[day].setAttribute("max", "1");
+            itemNumber[day].setAttribute("min", itemMin);
+            itemNumber[day].setAttribute("max", lunchMax);
             itemNumber[day].setAttribute("onkeydown", "return false;")
             itemNumber[day].value = 1;
             info[day] = new createElement("blockquote", newDiv[day], "info", weekOne[day].name + "<br>$" + weekOne[day].price);
@@ -430,8 +437,8 @@ function displayMenu(menu, week) {
             newButton[day] = new createElement("button", newDiv[day], "buttons", "ADD");
             itemNumber[day] = new createElement("input", newDiv[day], "input", "1");
             itemNumber[day].setAttribute("type", "number");
-            itemNumber[day].setAttribute("min", "1");
-            itemNumber[day].setAttribute("max", "1");
+            itemNumber[day].setAttribute("min", itemMin);
+            itemNumber[day].setAttribute("max", lunchMax);
             itemNumber[day].setAttribute("onkeydown", "return false;")
             itemNumber[day].value = 1;
             info[day] = new createElement("blockquote", newDiv[day], "info", weekTwo[day].name + "<br>$" + weekTwo[day].price);
@@ -613,13 +620,13 @@ studentName.setAttribute("placeholder", "Student Name");
 let tutorClass = new createElement("input", document.getElementById("student-form"), "student-input", "Tutor Class");
 tutorClass.setAttribute("type", "text");
 tutorClass.setAttribute("placeholder", "Tutor Class");
-tutorClass.setAttribute("maxlength", 3);
+tutorClass.setAttribute("maxlength", tutorClassMaxLength);
 
 // student number input field
 let studentNumber = new createElement("input", document.getElementById("student-form"), "student-input", "Student Number");
 studentNumber.setAttribute("type", "text");
 studentNumber.setAttribute("placeholder", "Student Number");
-studentNumber.setAttribute("maxlength", 5);
+studentNumber.setAttribute("maxlength", studentNumberMaxLength);
 
 // "place order" button
 let placeOrder = new createElement("button", document.getElementById("student-form"), "place-order-button", "Place Order");
@@ -630,17 +637,50 @@ placeOrder.onclick = function () {
     }
 
     else {
-    // logs all the inputs
-    console.log(studentName.value);
-    console.log(tutorClass.value);
-    console.log(studentNumber.value);
+        // logs all the inputs
+        console.log(studentName.value);
+        console.log(tutorClass.value);
+        console.log(studentNumber.value);
 
-    // hides the form
-    document.getElementById("student-form").style.display = "none";
-    document.getElementById("body").style = "none";
-    document.getElementById("overlay").classList = "none";
+        // hides the form
+        document.getElementById("student-form").style.display = "none";
+        document.getElementById("body").style = "none";
+        document.getElementById("overlay").classList = "none";
 
-    // alerts user that their order has been placed
-    window.alert(studentName.value + ", your order has been placed! Please pick up your items at 1:00pm.");
+        if (lunchAmount > 0 && morningTeaAmount > 0) {
+            window.alert(studentName.value + ", your order has been placed! Please pick up your Morning Tea items at 11:00am and your Lunch items at 1:00pm.");
+            console.log("both");
+        }
+
+        else if (morningTeaAmount > 0) {
+            window.alert(studentName.value + ", your order has been placed! Please pick up your Morning Tea items at 11:00am.");
+            console.log("morning tea");
+        }
+
+        
+        else if (lunchAmount > 0) {
+            window.alert(studentName.value + ", your order has been placed! Please pick up your Lunch items at 1:00pm.");
+            console.log("only lunch");
+        }
+        // alerts user that their order has been placed
+        
+
+        // resets the cart array
+        cart = [];
+        lunchAmount = 0;
+        morningTeaAmount = 0;
+
+        // hides cart page and shows menu page
+        document.getElementById("container").style.display = "flex";
+        document.getElementById("button-block").style.display = "block";
+        document.getElementById("lunch").style.display = "";
+        document.getElementById("morning-tea").style.display = "";
+
+        // resets the text to "ORDER ONLINE"
+        document.getElementById("order-online").innerHTML = "ORDER ONLINE";
+
+        // hides the cart container
+        document.getElementById("cart-container").style.display = "none";
+
     }
 }
