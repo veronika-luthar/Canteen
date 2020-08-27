@@ -13,7 +13,6 @@ const morningTeaMax = 3;
 const lunchMax = 1;
 
 const tutorClassMaxLength = 3;
-const studentNumberMaxLength = 5;
 
 
 // function to create menu items and put them in an array
@@ -611,6 +610,11 @@ function hideMenu() {
     }
 }
 
+let tutorClassCodes = ["ABH", "AJF", "AHB", "AWA", "BSA", "BLA", "BRI", "BGW", "HKA", "HML", "HMD", "HKI", "RWT", "RTH", "RHR", "RBN", "SMN", "SRO", "SDG", "SDA"];
+
+
+
+
 // student name input field
 let studentName = new createElement("input", document.getElementById("student-form"), "student-input", "Student Name");
 studentName.setAttribute("type", "text");
@@ -624,19 +628,37 @@ tutorClass.setAttribute("maxlength", tutorClassMaxLength);
 
 // student number input field
 let studentNumber = new createElement("input", document.getElementById("student-form"), "student-input", "Student Number");
-studentNumber.setAttribute("type", "text");
+studentNumber.setAttribute("type", "number");
 studentNumber.setAttribute("placeholder", "Student Number");
-studentNumber.setAttribute("maxlength", studentNumberMaxLength);
+studentNumber.setAttribute("max", 20999);
+studentNumber.setAttribute("min", 16001)
+studentNumber.setAttribute("onkeydown", "numberTest()");
+
+let num = studentNumber.value;
+
+function numberTest() {
+    if (num.isInteger == true) {
+    }
+}
 
 // "place order" button
 let placeOrder = new createElement("button", document.getElementById("student-form"), "place-order-button", "Place Order");
 placeOrder.onclick = function () {
 
     if (studentNumber.value == 0 || studentName.value == 0 || tutorClass.value == 0) {
-        window.alert("Text fields are empty!");
+        window.alert("Invalid text field/s.");
+    }
+
+    else if (!tutorClassCodes.includes((tutorClass.value).toUpperCase())) {
+        window.alert("Invalid tutor class.");
+    }
+
+    else if (studentNumber.value > 20999 || studentNumber.value <= 16000) {
+        window.alert("Invalid student number.");
     }
 
     else {
+
         // logs all the inputs
         console.log(studentName.value);
         console.log(tutorClass.value);
@@ -649,18 +671,15 @@ placeOrder.onclick = function () {
 
         if (lunchAmount > 0 && morningTeaAmount > 0) {
             window.alert(studentName.value + ", your order has been placed! Please pick up your Morning Tea items at 11:00am and your Lunch items at 1:00pm.");
-            console.log("both");
         }
 
         else if (morningTeaAmount > 0) {
             window.alert(studentName.value + ", your order has been placed! Please pick up your Morning Tea items at 11:00am.");
-            console.log("morning tea");
         }
 
         
         else if (lunchAmount > 0) {
             window.alert(studentName.value + ", your order has been placed! Please pick up your Lunch items at 1:00pm.");
-            console.log("only lunch");
         }
         // alerts user that their order has been placed
         
@@ -681,6 +700,10 @@ placeOrder.onclick = function () {
 
         // hides the cart container
         document.getElementById("cart-container").style.display = "none";
+
+        studentNumber.value = "";
+        studentName.value = "";
+        tutorClass.value = "";
 
     }
 }
