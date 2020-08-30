@@ -8,52 +8,13 @@ let itemNumber = [];
 let optionsDiv = [];
 let subButton = [];
 
+// item mins and maxes
 const itemMin = 1;
 const morningTeaMax = 3;
 const lunchMax = 1;
 
+// tutor class max char length
 const tutorClassMaxLength = 3;
-
-
-// function to create menu items and put them in an array
-function menuItems(name, price, type) {
-    this.name = name;
-    this.price = price;
-    this.type = type;
-}
-
-// function to get the price from each array
-function getPrice(array, name) {
-    for (let i = 0; i < array.length; i++) {
-
-        // if name of item in cart is the same as one in the array, return the price
-        if (name == array[i].name) {
-            return array[i].price;
-        }
-    }
-    return -1;
-}
-
-// function to get the price from all arrays
-function getAllItemPrice(name) {
-
-    // bagel and sandwich option outputs
-    name = name.split("-")[0];
-    let p0 = getPrice(morningTea, name);
-    let p1 = getPrice(weekOne, name);
-    let p2 = getPrice(weekTwo, name);
-    if (p0 >= 0) {
-        return p0;
-    }
-    else if (p1 >= 0) {
-        return p1;
-
-    }
-    else {
-        return p2;
-    }
-
-};
 
 // morning tea menu
 let morningTea = [];
@@ -107,12 +68,55 @@ let cart = [];
 let morningTeaAmount = 0;
 let lunchAmount = 0;
 
+// tutor class codes
+let tutorClassCodes = ["ABH", "AJF", "AHB", "AWA", "BSA", "BLA", "BRI", "BGW", "HKA", "HML", "HMD", "HKI", "RWT", "RTH", "RHR", "RBN", "SMN", "SRO", "SDG", "SDA"];
+
 // displays the morning tea menu as default
 displayMenu("morning tea");
 
 // hides the cart and student form divs
 document.getElementById("cart-container").style.display = "none";
 document.getElementById("student-form").style.display = "none";
+
+// function to create menu items and put them in an array
+function menuItems(name, price, type) {
+    this.name = name;
+    this.price = price;
+    this.type = type;
+}
+
+// function to get the price from each array
+function getPrice(array, name) {
+    for (let i = 0; i < array.length; i++) {
+
+        // if name of item in cart is the same as one in the array, return the price
+        if (name == array[i].name) {
+            return array[i].price;
+        }
+    }
+    return -1;
+}
+
+// function to get the price from all arrays
+function getAllItemPrice(name) {
+
+    // bagel and sandwich option outputs
+    name = name.split("-")[0];
+    let p0 = getPrice(morningTea, name);
+    let p1 = getPrice(weekOne, name);
+    let p2 = getPrice(weekTwo, name);
+    if (p0 >= 0) {
+        return p0;
+    }
+    else if (p1 >= 0) {
+        return p1;
+
+    }
+    else {
+        return p2;
+    }
+
+};
 
 // on button click changes the buttons' styling and menu
 function menuButtonClick(dir) {
@@ -164,7 +168,6 @@ function createElement(type, obj, name, text, aid ) {
     if (aid) array.id = aid;
     return obj.appendChild(array);
 }
-
 
 // creates "x" button which is used throughout the website
 function xButtonCreate(form) {
@@ -610,11 +613,6 @@ function hideMenu() {
     }
 }
 
-let tutorClassCodes = ["ABH", "AJF", "AHB", "AWA", "BSA", "BLA", "BRI", "BGW", "HKA", "HML", "HMD", "HKI", "RWT", "RTH", "RHR", "RBN", "SMN", "SRO", "SDG", "SDA"];
-
-
-
-
 // student name input field
 let studentName = new createElement("input", document.getElementById("student-form"), "student-input", "Student Name");
 studentName.setAttribute("type", "text");
@@ -631,28 +629,23 @@ let studentNumber = new createElement("input", document.getElementById("student-
 studentNumber.setAttribute("type", "number");
 studentNumber.setAttribute("placeholder", "Student Number");
 studentNumber.setAttribute("max", 20999);
-studentNumber.setAttribute("min", 16001)
-studentNumber.setAttribute("onkeydown", "numberTest()");
-
-let num = studentNumber.value;
-
-function numberTest() {
-    if (num.isInteger == true) {
-    }
-}
+studentNumber.setAttribute("min", 16001);
 
 // "place order" button
 let placeOrder = new createElement("button", document.getElementById("student-form"), "place-order-button", "Place Order");
 placeOrder.onclick = function () {
 
+    // checks if any field is empty
     if (studentNumber.value == 0 || studentName.value == 0 || tutorClass.value == 0) {
         window.alert("Invalid text field/s.");
     }
 
+    // checks if the tutor class is not in the array
     else if (!tutorClassCodes.includes((tutorClass.value).toUpperCase())) {
         window.alert("Invalid tutor class.");
     }
 
+    // checks if the student number is greater in value than 20999 or less than in value than 16000
     else if (studentNumber.value > 20999 || studentNumber.value <= 16000) {
         window.alert("Invalid student number.");
     }
@@ -669,6 +662,7 @@ placeOrder.onclick = function () {
         document.getElementById("body").style = "none";
         document.getElementById("overlay").classList = "none";
 
+        // checks what kind of items the user has (morning tea, lunch or both) and displays relevant message + pick up time
         if (lunchAmount > 0 && morningTeaAmount > 0) {
             window.alert(studentName.value + ", your order has been placed! Please pick up your Morning Tea items at 11:00am and your Lunch items at 1:00pm.");
         }
@@ -677,17 +671,19 @@ placeOrder.onclick = function () {
             window.alert(studentName.value + ", your order has been placed! Please pick up your Morning Tea items at 11:00am.");
         }
 
-        
         else if (lunchAmount > 0) {
             window.alert(studentName.value + ", your order has been placed! Please pick up your Lunch items at 1:00pm.");
         }
-        // alerts user that their order has been placed
-        
 
-        // resets the cart array
+        // resets the cart array, lunch amount and morning tea amount
         cart = [];
         lunchAmount = 0;
         morningTeaAmount = 0;
+
+        // resets student input fields ready for new order
+        studentNumber.value = "";
+        studentName.value = "";
+        tutorClass.value = "";
 
         // hides cart page and shows menu page
         document.getElementById("container").style.display = "flex";
@@ -700,10 +696,6 @@ placeOrder.onclick = function () {
 
         // hides the cart container
         document.getElementById("cart-container").style.display = "none";
-
-        studentNumber.value = "";
-        studentName.value = "";
-        tutorClass.value = "";
 
     }
 }
