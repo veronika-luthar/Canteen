@@ -630,6 +630,7 @@ studentNumber.setAttribute("type", "number");
 studentNumber.setAttribute("placeholder", "Student Number");
 studentNumber.setAttribute("max", 20999);
 studentNumber.setAttribute("min", 16001);
+studentNumber.setAttribute("pattern", "\d+");
 
 // "place order" button
 let placeOrder = new createElement("button", document.getElementById("student-form"), "place-order-button", "Place Order");
@@ -645,10 +646,12 @@ placeOrder.onclick = function () {
         window.alert("Invalid tutor class.");
     }
 
+
     // checks if the student number is greater in value than 20999 or less than in value than 16000
-    else if (studentNumber.value > 20999 || studentNumber.value <= 16000) {
+    else if (Number.isInteger(studentNumber.value) == false || studentNumber.value > 20999 || studentNumber.value <= 16000) {
         window.alert("Invalid student number.");
     }
+
 
     else {
 
