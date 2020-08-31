@@ -69,7 +69,7 @@ let morningTeaAmount = 0;
 let lunchAmount = 0;
 
 // tutor class codes
-let tutorClassCodes = ["ABH", "AJF", "AHB", "AWA", "BSA", "BLA", "BRI", "BGW", "HKA", "HML", "HMD", "HKI", "RWT", "RTH", "RHR", "RBN", "SMN", "SRO", "SDG", "SDA"];
+const tutorClassCodes = ["ABH", "AJF", "AHB", "AWA", "BSA", "BLA", "BRI", "BGW", "HKA", "HML", "HMD", "HKI", "RWT", "RTH", "RHR", "RBN", "SMN", "SRO", "SDG", "SDA"];
 
 // displays the morning tea menu as default
 displayMenu("morning tea");
@@ -646,9 +646,8 @@ placeOrder.onclick = function () {
         window.alert("Invalid tutor class.");
     }
 
-
     // checks if the student number is greater in value than 20999 or less than in value than 16000
-    else if (Number.isInteger(studentNumber.value) == false || studentNumber.value > 20999 || studentNumber.value <= 16000) {
+    else if (Number.isInteger(Number(studentNumber.value)) === false || studentNumber.value > 20999 || studentNumber.value <= 16000) {
         window.alert("Invalid student number.");
     }
 
